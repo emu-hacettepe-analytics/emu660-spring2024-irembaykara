@@ -3,38 +3,55 @@ title: "About Me"
 sidebar: false 
 ---
 
-![](assets/images/vesikalik.jpeg){fig-align="center"}
+![](images/vesikalık.jpg.png){fig-align="center" width="160"}
+
+# Resume
+
 
 # Education
 
--   B.S., ................................., ....................................University, Turkey, 20xx - 20xx.
--   M.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
--   Ph.D.., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
+-   B.S., Industrial Engineering, Selcuk University, Turkey, 2012 - 2017.
+-   M.S., Industrial Engineering, Hacettepe University, Turkey, 2022 - ongoing.
 
 # Work Experience
 
-## Employements
+1.  KOSGEB, Small And Medıum-Scale Busınesses Assistant Specialist, 2020
 
-1.  Firm xxx, position xx, year xxx
-
-2.  Firm yyy, position yyy, year yyy
+2.  Ministry of Industry and Technology, Industrial and Technology Assistant Specialist, 2020- ongoing
 
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
+1.  GURIS, Intern, 2014
 
-2.  Firm bbb, position yyy, year yyy
+2.  KNAUF, Intern, 2015
 
-# Projects
+3.  ULUSOY, Intern, 2016
 
-1.  TUBİTAK 1001..........................
+4.  MOTUS, Intern, 2016-2017
 
 # Publications
 
-1.  Dasdemir, E., Batta, R., Koksalan, M., Tezcaner Ozturk, D. (2022) “UAV Routing for Reconnaissance Mission: A Multi-Objective Orienteering Problem with Time-Dependent Prizes and Multiple Connections”, Computers & Operations Research, 145: 105882.
+1.  Baykara, I. (2023) “Yıkıcı Teknolojilerin Temel Ozellikleri Ve Kamu Politikalarındaki Yeri", Anahtar, 15-17: 413.
+
+# Projects
+
+"Yalın Üretim", Motus AŞ. 2016-2017
+
+"Stratejik Planlama, Ana Üretim Planlama, Malzeme İhtiyaç Planlaması Örnek Uygulama", Selcuk Universitesi, 2017
+
+"A Firmasında Forklift Taşıma Sisteminin Simüle Edilmesi", Selcuk Universitesi, 2016
 
 # Competencies
 
-R, Quarto, Git, Python
+| Competency       | Level                   |
+|------------------|-------------------------|
+| Microsoft Office | ███████████████████████ |
+| SPSS             | ███████                 |
+| Minitab          | █████                   |
+
 
 # Hobbies
+
+Swimming, Pilates, Travelling, Trying Different Recipes 
+
+[Click here to view my resume.](resume.pdf){.download-button}

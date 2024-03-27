@@ -6,10 +6,90 @@ title: "Assignment 1"
 
 ```{r}
 1 + 1
+
+
 ```
 
 My first assignment has two parts.
 
 ## (a)
 
+## Veri Bilimi ve Endüstri Mühendisliği Üzerine Sohbetler - Baykal Hafızoğlu & Erdi Daşdemir
+
+## “OR Dünyasına Bakış” konusu ele alınmıştır. Analitik yöntemler 4 ana başlıkta verilmiştir. Descriptive: tanımlamaya çalışılan analitik yöntemler(data mining, time series analysis), Diasnostic: problemin nedenini bulmayadayalı yöntemler(hypothesis testing, regression), Predictive: gelecekte ne olacağına bakmaya dayalı yöntemler (machine learning, clustering) ve Prescriptive: problemin çözümünü bulmaya çalışmak belirli aksiyonlar almaya yarayan analitik yöntemleri( optimization, math modeling) içerir. Analitik çözümlerde, yöntemlerden bir çoğu birlikte kullanılmaktadır.
+
+##• Bütün projeler iyi bir problem tanımıyla başlamalıdır. Bunu yaparken KPI’dan, başarı kriterlerinden yararlanılmaktadır. ##• Modelin son kullanıcıya ulaşması oldukça önemlidir. Bunu yaparken, deployment platform, early protoytyping, user interface kriterlerinden yararlanılmaktadır. Bahsedilen kriterlerden en önemlisi user interface’dir. ##• Son kullanıcı her zaman haklıdır ve ne talep ediyorsa yapılmalıdır. Kullanıcının anlayacağı dilde iletişim kurulmalıdır. Sürekli olarak iletişimde olunmalıdır. ##• Tüm işin %1’i analizle ilgili olabilir. ##• Analitik model açıklanabilir olmalıdır. ##• Model çözümleri, problemin tanımına değinerek bitirilmelidir ve bu matematiksel olarak gösterilmelidir. Kullanıcılar çözümün gücünü görmek isterler. Bu şekilde bu sağlanabilir.
+
 ## (b)
+
+```{r}
+print(mtcars)
+library(dslabs)
+data("mtcars")
+
+custom_summary <- function (x) {
+    mean <- mean(x)
+    std <- sd(x)
+    max <- max(x)
+    min <- min(x)
+    median <- median(x)
+    
+  statistics <- list(mean, std, max, min, median)
+  
+  return(statistics)
+  
+}
+
+
+```
+
+```{r}
+customNames <- names(mtcars)
+
+for (i in 1:11) {
+  x <- mtcars [ , i]
+
+  statistics <- custom_summary(x)
+  print(customNames[i])
+  print(statistics)
+}
+
+
+```
+
+```{r}
+
+value <- apply(mtcars,2,custom_summary)
+print(value)
+```
+
+## (c)
+
+```{r}
+library(dslabs)
+data("na_example")
+print(na_example)
+sum(is.na(na_example)) 
+
+```
+
+```{r}
+sum(is.na(na_example)) 
+```
+
+```{r}
+no_nas <- ifelse(is.na(na_example), 660, na_example) 
+print(no_nas)
+```
+
+```{r}
+new_660 <- sum(is.na(no_nas))
+print(new_660)
+
+```
+
+```{r}
+sum_new660 <- sum(no_nas==660)
+print(sum_new660)
+
+```
