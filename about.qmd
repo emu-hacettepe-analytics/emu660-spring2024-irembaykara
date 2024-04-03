@@ -7,7 +7,6 @@ sidebar: false
 
 # Resume
 
-
 # Education
 
 -   B.S., Industrial Engineering, Selcuk University, Turkey, 2012 - 2017.
@@ -49,9 +48,8 @@ sidebar: false
 | SPSS             | ███████                 |
 | Minitab          | █████                   |
 
-
 # Hobbies
 
-Swimming, Pilates, Travelling, Trying Different Recipes 
+Swimming, Pilates, Travelling, Trying Different Recipes
 
 [Click here to view my resume.](resume.pdf){.download-button}
