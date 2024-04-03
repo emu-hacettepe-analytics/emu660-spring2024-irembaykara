@@ -52,4 +52,4 @@ sidebar: false
 
 Swimming, Pilates, Travelling, Trying Different Recipes
 
-[Click here to view my resume.](resume.pdf){.download-button}
+[Resume]

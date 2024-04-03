@@ -13,11 +13,25 @@ My first assignment has two parts.
 
 ## (a)
 
-## Veri Bilimi ve Endüstri Mühendisliği Üzerine Sohbetler - Baykal Hafızoğlu & Erdi Daşdemir
+**Veri Bilimi ve Endüstri Mühendisliği Üzerine Sohbetler - Baykal Hafızoğlu & Erdi Daşdemir**
 
-## “OR Dünyasına Bakış” konusu ele alınmıştır. Analitik yöntemler 4 ana başlıkta verilmiştir. Descriptive: tanımlamaya çalışılan analitik yöntemler(data mining, time series analysis), Diasnostic: problemin nedenini bulmayadayalı yöntemler(hypothesis testing, regression), Predictive: gelecekte ne olacağına bakmaya dayalı yöntemler (machine learning, clustering) ve Prescriptive: problemin çözümünü bulmaya çalışmak belirli aksiyonlar almaya yarayan analitik yöntemleri( optimization, math modeling) içerir. Analitik çözümlerde, yöntemlerden bir çoğu birlikte kullanılmaktadır.
+“OR Dünyasına Bakış” konusu ele alınmıştır. Analitik yöntemler 4 ana başlıkta verilmiştir. Descriptive: tanımlamaya çalışılan analitik yöntemler(data mining, time series analysis), Diasnostic: problemin nedenini bulmayadayalı yöntemler(hypothesis testing, regression), Predictive: gelecekte ne olacağına bakmaya dayalı yöntemler (machine learning, clustering) ve Prescriptive: problemin çözümünü bulmaya çalışmak belirli aksiyonlar almaya yarayan analitik yöntemleri( optimization, math modeling) içerir. Analitik çözümlerde, yöntemlerden bir çoğu birlikte kullanılmaktadır.
 
-##• Bütün projeler iyi bir problem tanımıyla başlamalıdır. Bunu yaparken KPI’dan, başarı kriterlerinden yararlanılmaktadır. ##• Modelin son kullanıcıya ulaşması oldukça önemlidir. Bunu yaparken, deployment platform, early protoytyping, user interface kriterlerinden yararlanılmaktadır. Bahsedilen kriterlerden en önemlisi user interface’dir. ##• Son kullanıcı her zaman haklıdır ve ne talep ediyorsa yapılmalıdır. Kullanıcının anlayacağı dilde iletişim kurulmalıdır. Sürekli olarak iletişimde olunmalıdır. ##• Tüm işin %1’i analizle ilgili olabilir. ##• Analitik model açıklanabilir olmalıdır. ##• Model çözümleri, problemin tanımına değinerek bitirilmelidir ve bu matematiksel olarak gösterilmelidir. Kullanıcılar çözümün gücünü görmek isterler. Bu şekilde bu sağlanabilir.
+-   Bütün projeler iyi bir problem tanımıyla başlamalıdır. Bunu yaparken KPI’dan, başarı kriterlerinden yararlanılmaktadır.
+
+-   Modelin son kullanıcıya ulaşması oldukça önemlidir. Bunu yaparken, deployment platform, early protoytyping, user interface kriterlerinden yararlanılmaktadır.
+
+-   Bahsedilen kriterlerden en önemlisi user interface’dir. Son kullanıcı her zaman haklıdır ve ne talep ediyorsa yapılmalıdır.
+
+-   Kullanıcının anlayacağı dilde iletişim kurulmalıdır.
+
+-   Sürekli olarak iletişimde olunmalıdır.
+
+-   Tüm işin %1’i analizle ilgili olabilir.
+
+-   Analitik model açıklanabilir olmalıdır.
+
+-   Model çözümleri, problemin tanımına değinerek bitirilmelidir ve bu matematiksel olarak gösterilmelidir. Kullanıcılar çözümün gücünü görmek isterler. Bu şekilde bu sağlanabilir.
 
 ## (b)
 
