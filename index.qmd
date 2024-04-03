@@ -1,17 +1,12 @@
 ---
 title: "Welcome to My Analytics Lab"
-backgroundcolor: ("dark")
 ---
 
-![](images/yildizlar.jpg){fig-align="center" width="517"}
+*Hello!! My name is İrem BAYKARA.*
 
-Hello!! My name is İrem BAYKARA.
+*This is my personal webpage.*
 
-This is my personal webpage.
-
-Please stay tuned to follow my works on data analytics, blog posts, and more.
-
-![](images/linkedin.png){width="35"} <https://www.linkedin.com/in/irem-baykara-032447b4/>
+*Please stay tuned to follow my works on data analytics, blog posts, and more.*
 
 ![](images/istockphoto-1256127785-170667a.jpg){width="35"} 0312 201 66 13
 
