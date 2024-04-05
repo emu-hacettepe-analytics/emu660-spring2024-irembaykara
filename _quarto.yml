@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "[Student İrem BAYKARA]'s Analytics Lab"
+  title: "[İrem BAYKARA]'s Analytics Lab"
   navbar:
     search: true
     left:
@@ -22,11 +22,11 @@ website:
             
     tools:
       - icon: github
-        href: https://twitter.com
+        href: https://github.com/emu-hacettepe-analytics/emu660-spring2024-irembaykara
       - icon: twitter
-        href: https://twitter.com
+        href: https://twitter.com/iremmmbaykara
       - icon: linkedin
-        href: https://linkedin.com
+        href: https://www.linkedin.com/in/irem-baykara-032447b4/
 
   sidebar:
     - title: "Assignments"
