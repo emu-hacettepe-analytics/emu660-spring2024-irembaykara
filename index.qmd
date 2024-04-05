@@ -15,5 +15,3 @@ title: "Welcome to My Analytics Lab"
 ![](images/istockphoto-1256127785-170667a.jpg){width="35"} 0312 201 66 13
 
 ![](images/mail.png){width="35"} irem.baykara\@sanayi.gov.tr
-
-[![](images/linkedin.png){fig-alt="iremmmbaykara" width="35"}](https://www.linkedin.com/in/irem-baykara-032447b4/)
