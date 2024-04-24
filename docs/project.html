@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -184,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="veri" class="level1">
 <h1>2. Veri</h1>
-<p>Analiz için;</p>
+<p>Analiz için 2022 yılına ait;</p>
 <ul>
 <li><p>Yaş grubu ve cinsiyete göre Türkiye’ye gelen ve Türkiye’den giden göç nüfus sayısı,</p></li>
 <li><p>Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus,</p></li>
@@ -197,15 +231,210 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="veriye-bakış" class="level2">
 <h2 class="anchored" data-anchor-id="veriye-bakış">2.2. Veriye Bakış</h2>
+<ul>
+<li>Yaş grubu ve cinsiyete göre Türkiye’ye gelen ve Türkiye’den giden göç nüfus verisi;</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>yas <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"yas.xls"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>satir_sayisi <span class="ot">&lt;-</span> <span class="fu">nrow</span>(yas)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sutun_sayisi <span class="ot">&lt;-</span> <span class="fu">ncol</span>(yas)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>sutun_isimleri <span class="ot">&lt;-</span> <span class="fu">colnames</span>(yas)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Yabancı Uyruklu Nüfus Verilerinin Satır Sayısı:"</span>, satir_sayisi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Yabancı Uyruklu Nüfus Verilerinin Satır Sayısı: 16"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Yabancı Uyruklu Nüfus Verilerinin Sütun Sayısı:"</span>, sutun_sayisi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Yabancı Uyruklu Nüfus Verilerinin Sütun Sayısı: 8"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Sütun İsimleri:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sütun İsimleri:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sutun_isimleri)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "yas"          "toplam"       "gelen_toplam" "gelen_erkek"  "gelen_kadın" 
+[6] "giden_toplam" "giden_erkek"  "giden_kadın" </code></pre>
+</div>
+</div>
+<p>yas: Yaş grupları</p>
+<p>toplam: Toplam göç nüfusu</p>
+<p>gelen_toplam: Türkiye’ye gelen toplam göç nüfusu</p>
+<p>gelen_erkek/kadın: Cinsiyete göre Türkiye’ye gelen göç sayısı</p>
+<p>gelen_toplam: Türkiye’den giden toplam göç nüfusu</p>
+<p>gelen_erkek/kadın: Cinsiyete göre Türkiye’den giden göç sayısı</p>
+<ul>
+<li>Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus verisi,</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>vatandaslik <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"vatandaslik.xls"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>satir_sayisi <span class="ot">&lt;-</span> <span class="fu">nrow</span>(vatandaslik)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sutun_sayisi <span class="ot">&lt;-</span> <span class="fu">ncol</span>(vatandaslik)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sutun_isimleri <span class="ot">&lt;-</span> <span class="fu">colnames</span>(vatandaslik)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Vatandaşlık Ülkesine Göre Verilerinin Satır Sayısı:"</span>, satir_sayisi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Vatandaşlık Ülkesine Göre Verilerinin Satır Sayısı: 111"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Vatandaşlık Ülkesine Göre Verilerinin Sütun Sayısı:"</span>, sutun_sayisi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Vatandaşlık Ülkesine Göre Verilerinin Sütun Sayısı: 4"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Sütun İsimleri:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sütun İsimleri:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sutun_isimleri)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "vatandaslik_ulkesi" "giden"              "gelen"             
+[4] "net"               </code></pre>
+</div>
+</div>
+<p>İllere göre Türkiye’ye gelen ve Türkiye’den giden göç nüfus sayısı verisi,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>il <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"il.xls"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>satir_sayisi <span class="ot">&lt;-</span> <span class="fu">nrow</span>(il)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sutun_sayisi <span class="ot">&lt;-</span> <span class="fu">ncol</span>(il)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>sutun_isimleri <span class="ot">&lt;-</span> <span class="fu">colnames</span>(il)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>illeregore_net_goc <span class="ot">&lt;-</span> <span class="st">"net"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>illeregore_net_goc_toplami <span class="ot">&lt;-</span> <span class="fu">sum</span>(il[[illeregore_net_goc]], <span class="at">na.rm =</span> <span class="cn">TRUE</span> )</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"İllere Göre Göç Verilerinin Satır Sayısı:"</span>, satir_sayisi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "İllere Göre Göç Verilerinin Satır Sayısı: 81"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"İllere Göre Göç Verilerinin Sütun Sayısı:"</span>, sutun_sayisi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "İllere Göre Göç Verilerinin Sütun Sayısı: 4"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Sütun İsimleri:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sütun İsimleri:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sutun_isimleri)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "iller" "gelen" "giden" "net"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"İllere Göre Göç Verilerinin Net Göç Toplamı:"</span>, illeregore_net_goc_toplami))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "İllere Göre Göç Verilerinin Net Göç Toplamı: 27138"</code></pre>
+</div>
+</div>
+<p>iller: İdari bölünüşe göre 81 il sınıflaması</p>
+<p>gelen: İle gelen göç nüfusu</p>
+<p>giden: İlden giden göç nüfusu</p>
+<p>net: İle gelen ve giden göç arasındaki fark</p>
+<ul>
+<li>Vatandaşlık ülkesine göre Türkiye’ye gelen ve Türkiye’den giden göç nüfus sayısı verisi;</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>yabanci_nufus <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"yabanci_nufus.xls"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>satir_sayisi <span class="ot">&lt;-</span> <span class="fu">nrow</span>(yabanci_nufus)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sutun_sayisi <span class="ot">&lt;-</span> <span class="fu">ncol</span>(yabanci_nufus)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>sutun_isimleri <span class="ot">&lt;-</span> <span class="fu">colnames</span>(yabanci_nufus)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>yabanci <span class="ot">&lt;-</span> <span class="st">"yabanci_uyruklu_nufus"</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>yabanci_toplami <span class="ot">&lt;-</span> <span class="fu">sum</span>(yabanci_nufus[[yabanci]], <span class="at">na.rm =</span> <span class="cn">TRUE</span> )</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Yabancı Uyruklu Nüfus Verilerinin Satır Sayısı:"</span>, satir_sayisi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Yabancı Uyruklu Nüfus Verilerinin Satır Sayısı: 87"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Yabancı Uyruklu Nüfus Verilerinin Sütun Sayısı:"</span>, sutun_sayisi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Yabancı Uyruklu Nüfus Verilerinin Sütun Sayısı: 2"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Sütun İsimleri:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Sütun İsimleri:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sutun_isimleri)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "vatandaslik_ulkesi"    "yabanci_uyruklu_nufus"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Yabancı Uyruklu Nüfus Toplamı:"</span>, yabanci_toplami))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Yabancı Uyruklu Nüfus Toplamı: 1823836"</code></pre>
+</div>
+</div>
+<p>vatandaslik_ulkesi: Ülke</p>
+<p>yabanci_uyruklu_nufus: Yabancı uyruklu nüfus sayısı</p>
 </section>
 <section id="ön-işleme" class="level2">
 <h2 class="anchored" data-anchor-id="ön-işleme">2.4. Ön İşleme</h2>
-<p>xxxxxx</p>
+<p>Aşağıda en çok göç verilen ilk 10 ülkeyi ve bu analizin görselini görmektesiniz.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>top_10_net_goc <span class="ot">&lt;-</span> vatandaslik[<span class="fu">order</span>(vatandaslik<span class="sc">$</span>net, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>top_10_net_goc <span class="ot">&lt;-</span> top_10_net_goc[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">"vatandaslik_ulkesi"</span>, <span class="st">"net"</span>)]</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top_10_net_goc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   vatandaslik_ulkesi                     net
+   &lt;chr&gt;                                &lt;dbl&gt;
+ 1 Rusya Federasyonu-Russian Federation 87924
+ 2 Ukrayna-Ukraine                      28304
+ 3 Kazakistan-Kazakhstan                 8535
+ 4 Almanya-Germany                       6909
+ 5 Suriye-Syria                          5559
+ 6 Azerbaycan-Azerbaijan                 4307
+ 7 Sudan-Sudan                           2352
+ 8 Afganistan-Afghanistan                1887
+ 9 Cezayir-Algeria                       1754
+10 Yemen-Yemen                           1725</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>vatandaslik <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"vatandaslik.xls"</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>top_10_net_goc <span class="ot">&lt;-</span> vatandaslik[<span class="fu">order</span>(vatandaslik<span class="sc">$</span>net, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ]</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(top_10_net_goc, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(vatandaslik_ulkesi, net), <span class="at">y =</span> net)) <span class="sc">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"İlk 10 Ülke: Net Göç Sayısı"</span>) <span class="sc">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Ülke"</span>) <span class="sc">+</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Net Göç Sayısı"</span>) <span class="sc">+</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="analiz" class="level1">
 <h1>3. Analiz</h1>
-<p>xxxxxx</p>
+<p>Uluslararası göç hareketliliğinin yaş grubu ve cinsiyet arasındaki farklar ortaya konacaktır.</p>
+<p>Türkiye’den en çok gidilen ve Türkiye’den en çok göç alınan ülkeler belirlenecektir.</p>
+<p>İl bazında göç hareketliliği tespit edilecektir.</p>
+<p>Türkiye’deki yabancı uyruklu nufüs sayısı belirlenerek ülkelere göre sıralanacaktır.</p>
 <section id="veri-analizi" class="level2">
 <h2 class="anchored" data-anchor-id="veri-analizi">3.1 Veri Analizi</h2>
 <p>xxxxxx</p>

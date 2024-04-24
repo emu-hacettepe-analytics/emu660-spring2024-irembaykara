@@ -27,6 +27,9 @@ Analiz için 2022 yılına ait;
 -   Yaş grubu ve cinsiyete göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus verisi;
 
 ```{r}
+library(readxl)
+yas <- read_xls("yas.xls")
+getwd()
 satir_sayisi <- nrow(yas)
 sutun_sayisi <- ncol(yas)
 sutun_isimleri <- colnames(yas)
@@ -52,6 +55,9 @@ gelen_erkek/kadın: Cinsiyete göre Türkiye'den giden göç sayısı
 -   Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus verisi,
 
 ```{r}
+library(readxl)
+vatandaslik <- read_xls("vatandaslik.xls")
+getwd()
 satir_sayisi <- nrow(vatandaslik)
 sutun_sayisi <- ncol(vatandaslik)
 sutun_isimleri <- colnames(vatandaslik)
@@ -66,6 +72,9 @@ print(sutun_isimleri)
 İllere göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı verisi,
 
 ```{r}
+library(readxl)
+il <- read_xls("il.xls")
+getwd()
 satir_sayisi <- nrow(il)
 sutun_sayisi <- ncol(il)
 sutun_isimleri <- colnames(il)
@@ -76,7 +85,7 @@ print(paste("İllere Göre Göç Verilerinin Satır Sayısı:", satir_sayisi))
 print(paste("İllere Göre Göç Verilerinin Sütun Sayısı:", sutun_sayisi))
 print("Sütun İsimleri:")
 print(sutun_isimleri)
-print(paste("İllere Göre Göç Verilerinin Net Göç Toplamı:", net_goc_toplami))
+print(paste("İllere Göre Göç Verilerinin Net Göç Toplamı:", illeregore_net_goc_toplami))
 
 ```
 
@@ -91,6 +100,9 @@ net: İle gelen ve giden göç arasındaki fark
 -   Vatandaşlık ülkesine göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı verisi;
 
 ```{r}
+library(readxl)
+yabanci_nufus <- read_xls("yabanci_nufus.xls")
+getwd()
 satir_sayisi <- nrow(yabanci_nufus)
 sutun_sayisi <- ncol(yabanci_nufus)
 sutun_isimleri <- colnames(yabanci_nufus)
@@ -113,6 +125,7 @@ yabanci_uyruklu_nufus: Yabancı uyruklu nüfus sayısı
 Aşağıda en çok göç verilen ilk 10 ülkeyi ve bu analizin görselini görmektesiniz.
 
 ```{r}
+
 top_10_net_goc <- vatandaslik[order(vatandaslik$net, decreasing = TRUE), ]
 top_10_net_goc <- top_10_net_goc[1:10, c("vatandaslik_ulkesi", "net")]
 print(top_10_net_goc)
@@ -121,6 +134,9 @@ print(top_10_net_goc)
 
 ```{r}
 library(ggplot2)
+library(readxl)
+vatandaslik <- read_xls("vatandaslik.xls")
+getwd()
 
 top_10_net_goc <- vatandaslik[order(vatandaslik$net, decreasing = TRUE), ][1:10, ]
 
