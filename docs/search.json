@@ -9,9 +9,9 @@
   {
     "objectID": "project.html",
     "href": "project.html",
-    "title": "Project X",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
     "section": "",
-    "text": "Welcome to my project page.\nKeep an eye on this space to stay updated with my project activities.\n(The titles below are provided as examples; please feel free to adjust them as necessary.)"
+    "text": "Bu proje ile Türkiye’nin maruz kaldığı uluslararası göç hareketliliğinin büyüklük ve nitelik açısından analiz edilmesi amaçlanmaktadır."
   },
   {
     "objectID": "project.html#data-source",
@@ -30,7 +30,7 @@
   {
     "objectID": "project.html#reason-of-choice",
     "href": "project.html#reason-of-choice",
-    "title": "Project X",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
     "section": "2.3 Reason of Choice",
     "text": "2.3 Reason of Choice\nxxxxxx"
   },
@@ -212,5 +212,68 @@
     "title": "Welcome to My Analytics Lab",
     "section": "Communication",
     "text": "Communication\n 0312 201 66 13\n irem.baykara@sanayi.gov.tr"
+  },
+  {
+    "objectID": "project.html#veri-kaynağı",
+    "href": "project.html#veri-kaynağı",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "2.1. Veri Kaynağı",
+    "text": "2.1. Veri Kaynağı\n[Türkiye İstatistik Kurumu Uluslararası Göç İstistikleri] (https://data.tuik.gov.tr/Bulten/Index?p=Uluslararasi-Goc-Istatistikleri-2022-49457)"
+  },
+  {
+    "objectID": "project.html#veriye-bakış",
+    "href": "project.html#veriye-bakış",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "2.2. Veriye Bakış",
+    "text": "2.2. Veriye Bakış"
+  },
+  {
+    "objectID": "project.html#ön-işleme",
+    "href": "project.html#ön-işleme",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "2.4. Ön İşleme",
+    "text": "2.4. Ön İşleme\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#veri-analizi",
+    "href": "project.html#veri-analizi",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "3.1 Veri Analizi",
+    "text": "3.1 Veri Analizi\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#sonuçlar",
+    "href": "project.html#sonuçlar",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "3.2. Sonuçlar",
+    "text": "3.2. Sonuçlar\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#amaç-ve-kapsam",
+    "href": "project.html#amaç-ve-kapsam",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "",
+    "text": "Bu proje ile Türkiye’nin maruz kaldığı uluslararası göç hareketliliğinin büyüklük ve nitelik açısından analiz edilmesi amaçlanmaktadır."
+  },
+  {
+    "objectID": "project.html#veri",
+    "href": "project.html#veri",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "2. Veri",
+    "text": "2. Veri\nAnaliz için ;\n\nYaş grubu ve cinsiyete göre Türkiye’ye gelen ve Türkiye’den giden göç nüfus sayısı,\nTürkiye’de ikamet etmeye başladığı yıla, cinsiyete ve vatandaşlık ülkesine göre yabancı uyruklu nüfus,\nYaş grubu ve cinsiyete göre göç sayısı,\nİllere göre Türkiye’ye gelen ve Türkiye’den giden göç nüfus sayısı,\nVatandaşlık ülkesine göre Türkiye’ye gelen ve Türkiye’den giden göç nüfus sayısı verilerinden yararlanılacaktır."
+  },
+  {
+    "objectID": "project.html#analiz",
+    "href": "project.html#analiz",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "3. Analiz",
+    "text": "3. Analiz\nxxxxxx"
+  },
+  {
+    "objectID": "project.html#sonuçlar-ve-temel-çıkarımlar",
+    "href": "project.html#sonuçlar-ve-temel-çıkarımlar",
+    "title": "Uluslararası Göç İstatistikleri Analizi",
+    "section": "4. Sonuçlar ve Temel Çıkarımlar",
+    "text": "4. Sonuçlar ve Temel Çıkarımlar\nxxxxxx"
   }
 ]
