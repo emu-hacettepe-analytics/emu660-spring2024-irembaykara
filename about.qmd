@@ -5,7 +5,6 @@ sidebar: false
 
 ![](images/vesikalık.jpg.png){fig-align="center" width="160"}
 
-## Resume
 
 ### Education
 
@@ -58,4 +57,4 @@ sidebar: false
 
 ![](images/yemek.jpg){width="40"}Trying Different Recipes
 
-[Resume]
+[Resume](irembaykaracv.pdf)

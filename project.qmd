@@ -1,5 +1,9 @@
 ---
 title: "Uluslararası Göç İstatistikleri Analizi"
+format:
+  html:
+    code-fold: true
+    code-summary: "Kodu göster."
 ---
 
 # 1. Amaç ve Kapsam
@@ -20,7 +24,7 @@ Analiz için 2022 yılına ait;
 
 ## 2.1. Veri Kaynağı
 
-\[Türkiye İstatistik Kurumu Uluslararası Göç İstistikleri\] (https://data.tuik.gov.tr/Bulten/Index?p=Uluslararasi-Goc-Istatistikleri-2022-49457)
+[Türkiye İstatistik Kurumu Uluslararası Göç İstistikleri] (https://data.tuik.gov.tr/Bulten/Index?p=Uluslararasi-Goc-Istatistikleri-2022-49457)
 
 ## 2.2. Veriye Bakış
 
@@ -33,24 +37,12 @@ getwd()
 satir_sayisi <- nrow(yas)
 sutun_sayisi <- ncol(yas)
 sutun_isimleri <- colnames(yas)
-
 print(paste("Yabancı Uyruklu Nüfus Verilerinin Satır Sayısı:", satir_sayisi))
 print(paste("Yabancı Uyruklu Nüfus Verilerinin Sütun Sayısı:", sutun_sayisi))
 print("Sütun İsimleri:")
 print(sutun_isimleri)
+head(yas)
 ```
-
-yas: Yaş grupları
-
-toplam: Toplam göç nüfusu
-
-gelen_toplam: Türkiye'ye gelen toplam göç nüfusu
-
-gelen_erkek/kadın: Cinsiyete göre Türkiye'ye gelen göç sayısı
-
-gelen_toplam: Türkiye'den giden toplam göç nüfusu
-
-gelen_erkek/kadın: Cinsiyete göre Türkiye'den giden göç sayısı
 
 -   Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus verisi,
 
@@ -61,11 +53,11 @@ getwd()
 satir_sayisi <- nrow(vatandaslik)
 sutun_sayisi <- ncol(vatandaslik)
 sutun_isimleri <- colnames(vatandaslik)
-
 print(paste("Vatandaşlık Ülkesine Göre Verilerinin Satır Sayısı:", satir_sayisi))
 print(paste("Vatandaşlık Ülkesine Göre Verilerinin Sütun Sayısı:", sutun_sayisi))
 print("Sütun İsimleri:")
 print(sutun_isimleri)
+head(vatandaslik)
 
 ```
 
@@ -80,22 +72,14 @@ sutun_sayisi <- ncol(il)
 sutun_isimleri <- colnames(il)
 illeregore_net_goc <- "net"
 illeregore_net_goc_toplami <- sum(il[[illeregore_net_goc]], na.rm = TRUE )
-
 print(paste("İllere Göre Göç Verilerinin Satır Sayısı:", satir_sayisi))
 print(paste("İllere Göre Göç Verilerinin Sütun Sayısı:", sutun_sayisi))
 print("Sütun İsimleri:")
 print(sutun_isimleri)
 print(paste("İllere Göre Göç Verilerinin Net Göç Toplamı:", illeregore_net_goc_toplami))
+head(il)
 
 ```
-
-iller: İdari bölünüşe göre 81 il sınıflaması
-
-gelen: İle gelen göç nüfusu
-
-giden: İlden giden göç nüfusu
-
-net: İle gelen ve giden göç arasındaki fark
 
 -   Vatandaşlık ülkesine göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı verisi;
 
@@ -114,11 +98,8 @@ print(paste("Yabancı Uyruklu Nüfus Verilerinin Sütun Sayısı:", sutun_sayisi
 print("Sütun İsimleri:")
 print(sutun_isimleri)
 print(paste("Yabancı Uyruklu Nüfus Toplamı:", yabanci_toplami))
+head(yabanci_nufus)
 ```
-
-vatandaslik_ulkesi: Ülke
-
-yabanci_uyruklu_nufus: Yabancı uyruklu nüfus sayısı
 
 ## 2.4. Ön İşleme
 
@@ -138,8 +119,7 @@ library(readxl)
 vatandaslik <- read_xls("vatandaslik.xls")
 getwd()
 
-top_10_net_goc <- vatandaslik[order(vatandaslik$net, decreasing = TRUE), ][1:10, ]
-
+top_10_net_goc <- vatandaslik[order(vatandaslik$net, decreasing = TRUE), ][1:10, ] 
 ggplot(top_10_net_goc, aes(x = reorder(vatandaslik_ulkesi, net), y = net)) +
   geom_bar(stat = "identity", fill = "lightgreen") +
   ggtitle("İlk 10 Ülke: Net Göç Sayısı") +
