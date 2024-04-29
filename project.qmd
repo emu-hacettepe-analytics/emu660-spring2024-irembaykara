@@ -1,16 +1,17 @@
 ---
 title: "Uluslararası Göç İstatistikleri Analizi"
+
 format:
   html:
     code-fold: true
-    code-summary: "Kodu göster."
+    code-summary: "Kod:"
 ---
 
-# 1. Amaç ve Kapsam
+# [1. Amaç ve Kapsam]{style="color:darkblue"} ![](images/clipboard-3134960358.png){width="23" height="23"}
 
 Bu proje ile Türkiye’nin maruz kaldığı uluslararası göç hareketliliğinin büyüklük ve nitelik açısından analiz edilmesi amaçlanmaktadır.
 
-# 2. Veri
+# [2. Veri]{style="color:darkblue"} ![](images/clipboard-442643652.png){width="23" height="23"}
 
 Analiz için 2022 yılına ait;
 
@@ -22,13 +23,13 @@ Analiz için 2022 yılına ait;
 
 -   Vatandaşlık ülkesine göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı verilerinden yararlanılacaktır.
 
-## 2.1. Veri Kaynağı
+## [*2.1. Veri Kaynağı*]{style="color:brown"}
 
-[Türkiye İstatistik Kurumu Uluslararası Göç İstistikleri] (https://data.tuik.gov.tr/Bulten/Index?p=Uluslararasi-Goc-Istatistikleri-2022-49457)
+\[Türkiye İstatistik Kurumu Uluslararası Göç İstistikleri\] (https://data.tuik.gov.tr/Bulten/Index?p=Uluslararasi-Goc-Istatistikleri-2022-49457)
 
-## 2.2. Veriye Bakış
+## [*2.2. Veriye Bakış*]{style="color:brown"}
 
--   Yaş grubu ve cinsiyete göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus verisi;
+1)  Yaş grubu ve cinsiyete göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus verisi;
 
 ```{r}
 library(readxl)
@@ -101,7 +102,7 @@ print(paste("Yabancı Uyruklu Nüfus Toplamı:", yabanci_toplami))
 head(yabanci_nufus)
 ```
 
-## 2.4. Ön İşleme
+## [*2.3. Ön İşleme*]{style="color:brown"}
 
 Aşağıda en çok göç verilen ilk 10 ülkeyi ve bu analizin görselini görmektesiniz.
 
@@ -129,7 +130,7 @@ ggplot(top_10_net_goc, aes(x = reorder(vatandaslik_ulkesi, net), y = net)) +
 
 ```
 
-# 3. Analiz
+# [3. Analiz]{style="color:darkblue"} ![](images/clipboard-355426313.png){width="23"} {width="23" height="23"}
 
 Uluslararası göç hareketliliğinin yaş grubu ve cinsiyet arasındaki farklar ortaya konacaktır.
 
@@ -139,14 +140,14 @@ Türkiye'den en çok gidilen ve Türkiye'den en çok göç alınan ülkeler beli
 
 Türkiye'deki yabancı uyruklu nufüs sayısı belirlenerek ülkelere göre sıralanacaktır.
 
-## 3.1 Veri Analizi
+## *3.1 Veri Analizi* {style="color:brown"}
 
 xxxxxx
 
-## 3.2. Sonuçlar
+## *3.2. Sonuçlar* {style="color:brown"}
 
 xxxxxx
 
-# 4. Sonuçlar ve Temel Çıkarımlar
+# [4. Sonuç ve Çıkarımlar]{style="color:darkblue"} ![](images/clipboard-1698656164.png){width="35"} {width="23" height="23"}
 
 xxxxxx
