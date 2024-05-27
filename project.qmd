@@ -11,6 +11,7 @@ format:
 
 Bu proje ile Türkiye’nin maruz kaldığı uluslararası göç hareketliliğinin büyüklük ve nitelik açısından analiz edilmesi amaçlanmaktadır.
 
+
 # [2. Veri]{style="color:darkblue"} ![](images/clipboard-442643652.png){width="23" height="23"}
 
 Analiz için 2022 yılına ait;
@@ -29,106 +30,8 @@ Analiz için 2022 yılına ait;
 
 ## [*2.2. Veriye Bakış*]{style="color:brown"}
 
-1)  Yaş grubu ve cinsiyete göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus verisi;
 
-```{r}
-library(readxl)
-yas <- read_xls("yas.xls")
-getwd()
-satir_sayisi <- nrow(yas)
-sutun_sayisi <- ncol(yas)
-sutun_isimleri <- colnames(yas)
-print(paste("Yabancı Uyruklu Nüfus Verilerinin Satır Sayısı:", satir_sayisi))
-print(paste("Yabancı Uyruklu Nüfus Verilerinin Sütun Sayısı:", sutun_sayisi))
-print("Sütun İsimleri:")
-print(sutun_isimleri)
-head(yas)
-```
 
--   Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus verisi,
-
-```{r}
-library(readxl)
-vatandaslik <- read_xls("vatandaslik.xls")
-getwd()
-satir_sayisi <- nrow(vatandaslik)
-sutun_sayisi <- ncol(vatandaslik)
-sutun_isimleri <- colnames(vatandaslik)
-print(paste("Vatandaşlık Ülkesine Göre Verilerinin Satır Sayısı:", satir_sayisi))
-print(paste("Vatandaşlık Ülkesine Göre Verilerinin Sütun Sayısı:", sutun_sayisi))
-print("Sütun İsimleri:")
-print(sutun_isimleri)
-head(vatandaslik)
-
-```
-
-İllere göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı verisi,
-
-```{r}
-library(readxl)
-il <- read_xls("il.xls")
-getwd()
-satir_sayisi <- nrow(il)
-sutun_sayisi <- ncol(il)
-sutun_isimleri <- colnames(il)
-illeregore_net_goc <- "net"
-illeregore_net_goc_toplami <- sum(il[[illeregore_net_goc]], na.rm = TRUE )
-print(paste("İllere Göre Göç Verilerinin Satır Sayısı:", satir_sayisi))
-print(paste("İllere Göre Göç Verilerinin Sütun Sayısı:", sutun_sayisi))
-print("Sütun İsimleri:")
-print(sutun_isimleri)
-print(paste("İllere Göre Göç Verilerinin Net Göç Toplamı:", illeregore_net_goc_toplami))
-head(il)
-
-```
-
--   Vatandaşlık ülkesine göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı verisi;
-
-```{r}
-library(readxl)
-yabanci_nufus <- read_xls("yabanci_nufus.xls")
-getwd()
-satir_sayisi <- nrow(yabanci_nufus)
-sutun_sayisi <- ncol(yabanci_nufus)
-sutun_isimleri <- colnames(yabanci_nufus)
-yabanci <- "yabanci_uyruklu_nufus"
-yabanci_toplami <- sum(yabanci_nufus[[yabanci]], na.rm = TRUE )
-
-print(paste("Yabancı Uyruklu Nüfus Verilerinin Satır Sayısı:", satir_sayisi))
-print(paste("Yabancı Uyruklu Nüfus Verilerinin Sütun Sayısı:", sutun_sayisi))
-print("Sütun İsimleri:")
-print(sutun_isimleri)
-print(paste("Yabancı Uyruklu Nüfus Toplamı:", yabanci_toplami))
-head(yabanci_nufus)
-```
-
-## [*2.3. Ön İşleme*]{style="color:brown"}
-
-Aşağıda en çok göç verilen ilk 10 ülkeyi ve bu analizin görselini görmektesiniz.
-
-```{r}
-
-top_10_net_goc <- vatandaslik[order(vatandaslik$net, decreasing = TRUE), ]
-top_10_net_goc <- top_10_net_goc[1:10, c("vatandaslik_ulkesi", "net")]
-print(top_10_net_goc)
-
-```
-
-```{r}
-library(ggplot2)
-library(readxl)
-vatandaslik <- read_xls("vatandaslik.xls")
-getwd()
-
-top_10_net_goc <- vatandaslik[order(vatandaslik$net, decreasing = TRUE), ][1:10, ] 
-ggplot(top_10_net_goc, aes(x = reorder(vatandaslik_ulkesi, net), y = net)) +
-  geom_bar(stat = "identity", fill = "lightgreen") +
-  ggtitle("İlk 10 Ülke: Net Göç Sayısı") +
-  xlab("Ülke") +
-  ylab("Net Göç Sayısı") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-```
 
 # [3. Analiz]{style="color:darkblue"} ![](images/clipboard-355426313.png){width="23"} {width="23" height="23"}
 
@@ -140,9 +43,166 @@ Türkiye'den en çok gidilen ve Türkiye'den en çok göç alınan ülkeler beli
 
 Türkiye'deki yabancı uyruklu nufüs sayısı belirlenerek ülkelere göre sıralanacaktır.
 
+Ülkemize yapılan giriş ve çıkışlar belirlenecektir.
+
 ## *3.1 Veri Analizi* {style="color:brown"}
 
-xxxxxx
+a) Yurt dışından en çok göç alan ve yurt dışına en çok göç veren şehirler;
+
+```{r}
+library(ggplot2)
+library(readxl)
+
+data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
+
+# Göç veren şehirleri belirleme
+top_10_veren <- data[order(-data$giden),][1:10,]
+ggplot(top_10_veren, aes(x = reorder(iller, -giden), y = giden)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+   coord_flip() + 
+  labs(title = "En Çok Göç Veren İlk 10 Şehir", x = "Şehirler", y = "Gelen Kişi Sayısı") +
+  theme_minimal()
+
+# Göç alan şehirleri belirleme
+top_10_gelen <- data[order(-data$gelen),][1:10,]
+ggplot(top_10_gelen, aes(x = reorder(iller, gelen), y = gelen)) + 
+  geom_bar(stat = "identity", fill = "skyblue") + 
+  coord_flip() + 
+  labs(title = "En Çok Göç Alan İlk 10 Şehir", x = "Şehirler", y = "Gelen Kişi Sayısı") +
+  theme_minimal()
+
+```
+
+b) En çok göç alan ve en çok göç veren ülkeler;
+
+
+```{r}
+library(ggplot2)
+library(readxl)
+
+data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/vatandaslik.xls")
+
+#en çok göç alan ilk 10 ülke
+top_10_gelen <- data[order(-data$gelen), ][1:10, ]
+
+ggplot(top_10_gelen, aes(x = reorder(vatandaslik_ulkesi, -gelen), y = gelen)) +
+  geom_bar(stat = "identity", fill = "lightgreen") +  ggtitle("İlk 10 Ülke: Göç Alan") +
+  xlab("Ülke") +
+  ylab("Gelen Göç Sayısı") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+
+# en çok göç alan ilk 10 ülke
+top_10_giden <- data[order(-data$giden), ][1:10, ]
+
+ggplot(top_10_giden, aes(x = reorder(vatandaslik_ulkesi, -giden), y = giden)) +
+  geom_bar(stat = "identity", fill = "lightgreen") +  ggtitle("İlk 10 Ülke: Göç Edilen") +
+  xlab("Ülke") +
+  ylab("Giden Göç Sayısı") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+c) Türkiye'deki Yabancı Uyruk Nüfusu:
+
+```{r}
+#çoğalttttttt
+library(ggplot2)
+library(tibble)
+library(readxl)
+data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yabanci_nufus.xls")
+
+top_10 <- data[order(-data$yabanci_uyruklu_nufus),][1:10,]
+
+ggplot(top_10, aes(x = reorder(vatandaslik_ulkesi, -yabanci_uyruklu_nufus), y = yabanci_uyruklu_nufus, fill = vatandaslik_ulkesi)) +
+  geom_bar(stat = "identity") +
+  labs(title = "İlk 10 Yabancı Nüfus", x = "Vatandaşlık Ülkesi", y = "Yabancı Uyruklu Nüfus") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_brewer(palette = "Set3")
+
+
+```
+
+
+c) Yıllara Göre Yakalanan Düzensiz Göçmenlerin Dağılımı:
+
+
+```{r}
+library(tidyverse)
+library(tsibble)
+library(fable)
+library(ggplot2)
+library(readxl)
+library(forecast) 
+kacak <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/kacak.xlsx")
+
+data_long <- kacak %>%
+  pivot_longer(-ulke, names_to = "year", values_to = "value") %>%
+  mutate(year = as.integer(year))
+
+forecast_data <- data.frame()
+
+
+for (country in unique(data_long$ulke)) {
+
+  country_data <- data_long %>% filter(ulke == country)
+  
+
+  ts_data <- ts(country_data$value, start = min(country_data$year), frequency = 1)
+  
+  fit <- auto.arima(ts_data)
+  
+  forecast_values <- forecast(fit, h = 5)
+  forecast_df <- data.frame(
+    ulke = country,
+    year = (max(country_data$year) + 1):(max(country_data$year) + 5),
+    value = as.numeric(forecast_values$mean)
+  )
+  
+  forecast_data <- bind_rows(forecast_data, forecast_df)
+}
+
+combined_data <- bind_rows(data_long, forecast_data)
+ggplot(combined_data, aes(x = year, y = value, color = ulke)) +
+  geom_line(size = 1, linetype = "solid") +
+  labs(title = "Ülkelerin Yıllık Nüfus Tahminleri",
+       x = "Yıl",
+       y = "Nüfus") +
+  theme_minimal()
+
+```
+```{r}
+
+```
+
+
+d) Kadınlarda En Çok Göç Eden Yaş Aralığı: 
+
+```{r}
+
+```
+İllere göre eğitim düzeyi ve göç arasında ilişki var mı?
+
+
+```{r}
+library(dplyr)
+library(readxl)
+library(ggplot2)
+illeregoreegitim <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/illeregoreegitim.xlsx")
+
+model <- lm(yuksekokul ~ giden, data = illeregoreegitim)
+summary(model)
+ggplot(illeregoreegitim, aes(x = giden, y = yuksekokul)) +
+  geom_point(color = "navy") +                  
+  geom_smooth(method = "lm", col = "darkred") +      
+  labs(title = "Göç ile Yüksekokul Üstü Eğitim Düzeyi Arasındaki İlişki",
+       x = "Göç Sayısı",
+       y = "Yüksekokul Üstü Eğitim Düzeyi") +
+  theme_minimal()                       
+
+```
+
 
 ## *3.2. Sonuçlar* {style="color:brown"}
 

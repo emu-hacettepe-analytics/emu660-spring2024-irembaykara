@@ -5,19 +5,18 @@ sidebar: false
 
 ![](images/vesikalık.jpg.png){fig-align="center" width="160"}
 
-
-### Education
+### \[Education\] {style="color:darkblue"}
 
 -   B.S., Industrial Engineering, Selcuk University, Turkey, 2012 - 2017.
 -   M.S., Industrial Engineering, Hacettepe University, Turkey, 2022 - ongoing.
 
-### Work Experience
+### \[Work Experience\] {style="color:darkblue"}
 
 1.  KOSGEB, Small And Medium-Scale Busınesses Assistant Specialist, 2020
 
 2.  Ministry of Industry and Technology, Industrial and Technology Assistant Specialist, 2020- on going
 
-### Internships
+### \[Internships\] {style="color:darkblue"}
 
 1.  GURIS, Intern, 2014
 
@@ -27,11 +26,11 @@ sidebar: false
 
 4.  MOTUS, Intern, 2016-2017
 
-### Publications
+### \[Publications\] {style="color:darkblue"}
 
 1.  Baykara, I. (2023) “Yıkıcı Teknolojilerin Temel Ozellikleri Ve Kamu Politikalarındaki Yeri", Anahtar, 15-17: 413.
 
-### Projects
+### \[Projects\] {style="color:darkblue"}
 
 "Yalın Üretim", Motus AŞ. 2016-2017
 
@@ -39,7 +38,7 @@ sidebar: false
 
 "A Firmasında Forklift Taşıma Sisteminin Simüle Edilmesi", Selcuk Universitesi, 2016
 
-### Competencies
+### \[Competencies\] {style="color:darkblue"}
 
 | Competency       | Level                   |
 |------------------|-------------------------|
@@ -47,7 +46,7 @@ sidebar: false
 | SPSS             | ███████                 |
 | Minitab          | █████                   |
 
-# Hobbies
+### \[Hobbies\] {style="color:darkblue"}
 
 ![](images/swimming.jpg){width="40" height="35"}Swimming
 
@@ -57,4 +56,4 @@ sidebar: false
 
 ![](images/yemek.jpg){width="40"}Trying Different Recipes
 
-[Resume](irembaykaracv.pdf)
+[Resume](irembaykaracv.pdf) {style="color:darkblue"}
