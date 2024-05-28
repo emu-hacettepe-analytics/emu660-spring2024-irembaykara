@@ -4,50 +4,103 @@ title: "Uluslararası Göç İstatistikleri Analizi"
 format:
   html:
     code-fold: true
-    code-summary: "Kod:"
+    code-summary: "Kodu Görmek İçin Tıklayınız."
 ---
+
+![](images/74pZ.gif){fig-align="center" width="474"}
 
 # [1. Amaç ve Kapsam]{style="color:darkblue"} ![](images/clipboard-3134960358.png){width="23" height="23"}
 
-Bu proje ile Türkiye’nin maruz kaldığı uluslararası göç hareketliliğinin büyüklük ve nitelik açısından analiz edilmesi amaçlanmaktadır.
+-   Türkiye’nin maruz kaldığı uluslararası göç hareketliliğinin büyüklük ve nitelik açısından analiz edilmesi
 
+-   Yüksekokul ve üzeri eğitime sahip kişi sayısı ile göç sayısı arasındaki ilişkinin tespiti
+
+-   İl bazında Gayrisafi Yurt İçi Hasıla ile göç sayısı arasındaki ilişkinin tespiti
 
 # [2. Veri]{style="color:darkblue"} ![](images/clipboard-442643652.png){width="23" height="23"}
+
+## [*2.1. Veri Kaynağı*]{style="color:brown"}
+
+-   \[Türkiye İstatistik Kurumu Uluslararası Göç İstistikleri\](https://data.tuik.gov.tr/Bulten/Index?p=Uluslararasi-Goc-Istatistikleri-2022-49457)
+
+-   \[İl Bazında Gayrisafi Yurt İçi Hasıla\](https://data.tuik.gov.tr/Bulten/Index?p=Il-Bazinda-Gayrisafi-Yurt-Ici-Hasila-2022-45867)
+
+-   \[Göç İdaresi Başkanlığı Düzensiz Göç İstatistikleri\](https://www.goc.gov.tr/duzensiz-goc-istatistikler)
+
+## [*2.2. Veriye Bakış*]{style="color:brown"}
 
 Analiz için 2022 yılına ait;
 
 -   Yaş grubu ve cinsiyete göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı,
 
--   Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus,
-
 -   İllere göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı,
 
--   Vatandaşlık ülkesine göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı verilerinden yararlanılacaktır.
+-   Vatandaşlık ülkesine göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı,
 
-## [*2.1. Veri Kaynağı*]{style="color:brown"}
+-   Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus,
 
-\[Türkiye İstatistik Kurumu Uluslararası Göç İstistikleri\] (https://data.tuik.gov.tr/Bulten/Index?p=Uluslararasi-Goc-Istatistikleri-2022-49457)
+-   Yıllara göre yakalanan göçmen sayısı,
 
-## [*2.2. Veriye Bakış*]{style="color:brown"}
+-   İller Bazında Gayrisafi Yurt İçi Hasıla(\$) verilerinden yararlanılacaktır.
 
-
-
+```{r}
+#library(readxl)
+#yas <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yas.xls")
+#il <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
+#vatandaslik <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/vatandaslik.xls")
+#yabanci_nufus <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yabanci_nufus.xls")
+#kacak <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/kacak.xlsx")
+#illeregoreegitim <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/illeregoreegitim.xlsx")
+#head(yas)
+#head(il)
+#head(vatandaslik)
+#head(yabanci_nufus)
+#head(kacak)
+#head(illeregoreegitim)
+```
 
 # [3. Analiz]{style="color:darkblue"} ![](images/clipboard-355426313.png){width="23"} {width="23" height="23"}
 
-Uluslararası göç hareketliliğinin yaş grubu ve cinsiyet arasındaki farklar ortaya konacaktır.
+Türkiye'deki mevcut durum tespit edilmiştir.
 
-Türkiye'den en çok gidilen ve Türkiye'den en çok göç alınan ülkeler belirlenecektir.
+Zaman serisi analizi ile kaçak göçmen sayısının tahmini yapılmıştır.
 
-İl bazında göç hareketliliği tespit edilecektir.
+Regresyon analizi ile göç hareketliliği ile GSYH ve eğitim düzeyi arasındaki ilişki belirlenmiştir.
 
-Türkiye'deki yabancı uyruklu nufüs sayısı belirlenerek ülkelere göre sıralanacaktır.
+## *3.1. Veri Analizi* {style="color:brown"}
 
-Ülkemize yapılan giriş ve çıkışlar belirlenecektir.
+### *I) Cinsiyet ve Yaş Aralığı Bazında Göç Hareketliliği:* {style="color:darkblue"}
 
-## *3.1 Veri Analizi* {style="color:brown"}
+```{r}
+library(ggplot2)
+library(readxl)
+data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yas.xls")
 
-a) Yurt dışından en çok göç alan ve yurt dışına en çok göç veren şehirler;
+cubuk_grafik <- ggplot(data, aes(x = yas)) +
+  geom_bar(aes(y = net_erkek), fill = "steelblue", stat = "identity", position = "dodge") +
+  labs(title = "Erkeklerde Yaş Aralığı Bazında Net Göç Sayısı", x = "Yaş Aralığı", y = "Göç Sayısı") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+print(cubuk_grafik)
+
+```
+
+```{r}
+library(ggplot2)
+library(readxl)
+data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yas.xls")
+
+cubuk_grafik <- ggplot(data, aes(x = yas)) +
+  geom_bar(aes(y = net_kadin), fill = "pink", stat = "identity", position = "dodge") +
+  labs(title = "Kadınlarda Yaş Aralığı Bazında Net Göç Sayısı", x = "Yaş Aralığı", y = "Göç Sayısı") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+print(cubuk_grafik)
+```
+
+### *II) Yurt Dışına En Çok Göç Veren Şehirler:* {style="color:darkblue"}
 
 ```{r}
 library(ggplot2)
@@ -61,20 +114,57 @@ ggplot(top_10_veren, aes(x = reorder(iller, -giden), y = giden)) +
   geom_bar(stat = "identity", fill = "skyblue") +
    coord_flip() + 
   labs(title = "En Çok Göç Veren İlk 10 Şehir", x = "Şehirler", y = "Gelen Kişi Sayısı") +
-  theme_minimal()
+  theme_light()
+
+```
+
+### *III)Yurt Dışından En Çok Göç Alan Şehirler:* {style="color:darkblue"}
+
+```{r}
+library(ggplot2)
+library(readxl)
+
+data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
 
 # Göç alan şehirleri belirleme
 top_10_gelen <- data[order(-data$gelen),][1:10,]
 ggplot(top_10_gelen, aes(x = reorder(iller, gelen), y = gelen)) + 
   geom_bar(stat = "identity", fill = "skyblue") + 
   coord_flip() + 
-  labs(title = "En Çok Göç Alan İlk 10 Şehir", x = "Şehirler", y = "Gelen Kişi Sayısı") +
-  theme_minimal()
+  labs(title = "En Çok Göç Alan: İlk 10 Şehir", x = "Şehirler", y = "Gelen Kişi Sayısı") +
+  theme_light()
+```
+
+### *IV) İller Bazında Nüfusa Oranla Net Göç Oranı:* {style="color:darkblue"}
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(readxl)
+
+data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
+
+
+data <- data %>%
+  mutate(goc_orani = (net /nufus) * 100)
+
+goc_orani <- data[order(-data$goc_orani),][1:10,]
+ggplot(goc_orani, aes(x = reorder(iller, goc_orani), y = goc_orani)) + 
+  geom_bar(stat = "identity", fill = "khaki") + 
+  coord_flip() + 
+  labs(title = "Nüfusa Oranla Net Göç Oranı En Yüksek: İlk 10 Şehir", x = "Şehirler", y = "Nüfusa Göre Net Göç Oranı(%)") +
+  theme_light()
+
+goc_orani <- data[order(-data$goc_orani),][81:71,]
+ggplot(goc_orani, aes(x = reorder(iller, goc_orani), y = goc_orani)) + 
+  geom_bar(stat = "identity", fill = "khaki") + 
+  coord_flip() + 
+  labs(title = "Nüfusa Oranla Net Göç Oranı En Düşük: İlk 10 Şehir", x = "Şehirler", y = "Nüfusa Göre Net Göç Oranı(%)") +
+  theme_light()
 
 ```
 
-b) En çok göç alan ve en çok göç veren ülkeler;
-
+### *V) Ülkeler Bazında Göç Dağılımı:* {style="color:darkblue"}
 
 ```{r}
 library(ggplot2)
@@ -86,7 +176,7 @@ data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-iremb
 top_10_gelen <- data[order(-data$gelen), ][1:10, ]
 
 ggplot(top_10_gelen, aes(x = reorder(vatandaslik_ulkesi, -gelen), y = gelen)) +
-  geom_bar(stat = "identity", fill = "lightgreen") +  ggtitle("İlk 10 Ülke: Göç Alan") +
+  geom_bar(stat = "identity", fill = "lightgreen") +  ggtitle("İlk 10 Ülke: Göç Alınan") +
   xlab("Ülke") +
   ylab("Gelen Göç Sayısı") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
@@ -101,12 +191,12 @@ ggplot(top_10_giden, aes(x = reorder(vatandaslik_ulkesi, -giden), y = giden)) +
   ylab("Giden Göç Sayısı") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+
 ```
 
-c) Türkiye'deki Yabancı Uyruk Nüfusu:
+### *VI) Türkiye'deki Yabancı Uyruk Nüfusu:* {style="color:darkblue"}
 
 ```{r}
-#çoğalttttttt
 library(ggplot2)
 library(tibble)
 library(readxl)
@@ -121,12 +211,9 @@ ggplot(top_10, aes(x = reorder(vatandaslik_ulkesi, -yabanci_uyruklu_nufus), y = 
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_brewer(palette = "Set3")
 
-
 ```
 
-
-c) Yıllara Göre Yakalanan Düzensiz Göçmenlerin Dağılımı:
-
+### *VII) Yıllara Göre Yakalanan Düzensiz Göçmenlerin Dağılımı:* {style="color:darkblue"}
 
 ```{r}
 library(tidyverse)
@@ -166,30 +253,28 @@ for (country in unique(data_long$ulke)) {
 combined_data <- bind_rows(data_long, forecast_data)
 ggplot(combined_data, aes(x = year, y = value, color = ulke)) +
   geom_line(size = 1, linetype = "solid") +
-  labs(title = "Ülkelerin Yıllık Nüfus Tahminleri",
+  labs(title = "Yakalanan Kaçak Göçmen Nüfusu ve Gelecek 5 Yıl Tahmini",
        x = "Yıl",
        y = "Nüfus") +
   theme_minimal()
 
 ```
-```{r}
 
-```
-
-
-d) Kadınlarda En Çok Göç Eden Yaş Aralığı: 
-
-```{r}
-
-```
-İllere göre eğitim düzeyi ve göç arasında ilişki var mı?
-
+### *VIII) İller Bazında Eğitim Düzeyi ve Göç ArasındaKİ İlişki:* {style="color:darkblue"}
 
 ```{r}
 library(dplyr)
 library(readxl)
 library(ggplot2)
 illeregoreegitim <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/illeregoreegitim.xlsx")
+
+#cor_func <- function(x, y) {
+ # cor_coef <- cor(x, y)
+  #cor_label <- paste("Correlation:", round(cor_coef, 3))
+  #return(cor_label)
+#}
+#cor_label <- cor_func(illeregoreegitim$yuksekokul, illeregoreegitim$giden)
+#print(cor_label)
 
 model <- lm(yuksekokul ~ giden, data = illeregoreegitim)
 summary(model)
@@ -198,16 +283,42 @@ ggplot(illeregoreegitim, aes(x = giden, y = yuksekokul)) +
   geom_smooth(method = "lm", col = "darkred") +      
   labs(title = "Göç ile Yüksekokul Üstü Eğitim Düzeyi Arasındaki İlişki",
        x = "Göç Sayısı",
-       y = "Yüksekokul Üstü Eğitim Düzeyi") +
+       y = "Yüksekokul Üstü Eğitim Düzeyi Kişi Sayısı") +
   theme_minimal()                       
 
 ```
 
+### *IX) Uluslararası Göç İstatistiği ile Gayrisafi Yurt İçi Hasıla Arasındaki İlişki:* {style="color:darkblue"}
 
-## *3.2. Sonuçlar* {style="color:brown"}
+```{r}
+library(dplyr)
+library(readxl)
+library(ggplot2)
+data <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/GSYH.xlsx")
 
-xxxxxx
+#cor_func <- function(x, y) {
+ # cor_coef <- cor(x, y)
+  #cor_label <- paste("Correlation:", round(cor_coef, 3))
+  #return(cor_label)
+#}
+#cor_label <- cor_func(data$GSYH, data$giden)
+#print(cor_label)
+
+model <- lm(GSYH ~ net, data = data)
+summary(model)
+ggplot(data, aes(x = giden, y = GSYH)) +
+  geom_point(color = "navy") +                  
+  geom_smooth(method = "lm", col = "darkred") +      
+  labs(title = "Net Göç Sayısı ile Gayrisafi Milli Hasıla Arasındaki İlişki",
+       x = "Göç Sayısı",
+       y = "Gayrisafi Yurt İçi Hasıla") +
+  theme_minimal()       
+    
+
+```
 
 # [4. Sonuç ve Çıkarımlar]{style="color:darkblue"} ![](images/clipboard-1698656164.png){width="35"} {width="23" height="23"}
 
-xxxxxx
+![](images/sonuc.gif){fig-align="center" width="259"}
+
+
