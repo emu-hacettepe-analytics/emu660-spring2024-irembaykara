@@ -189,6 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#vii-yıllara-göre-yakalanan-düzensiz-göçmenlerin-dağılımı" id="toc-vii-yıllara-göre-yakalanan-düzensiz-göçmenlerin-dağılımı" class="nav-link" data-scroll-target="#vii-yıllara-göre-yakalanan-düzensiz-göçmenlerin-dağılımı"><em>VII) Yıllara Göre Yakalanan Düzensiz Göçmenlerin Dağılımı:</em></a></li>
   <li><a href="#viii-iller-bazında-eğitim-düzeyi-ve-göç-arasındaki-ilişki" id="toc-viii-iller-bazında-eğitim-düzeyi-ve-göç-arasındaki-ilişki" class="nav-link" data-scroll-target="#viii-iller-bazında-eğitim-düzeyi-ve-göç-arasındaki-ilişki"><em>VIII) İller Bazında Eğitim Düzeyi ve Göç ArasındaKİ İlişki:</em></a></li>
   <li><a href="#ix-uluslararası-göç-istatistiği-ile-gayrisafi-yurt-içi-hasıla-arasındaki-ilişki" id="toc-ix-uluslararası-göç-istatistiği-ile-gayrisafi-yurt-içi-hasıla-arasındaki-ilişki" class="nav-link" data-scroll-target="#ix-uluslararası-göç-istatistiği-ile-gayrisafi-yurt-içi-hasıla-arasındaki-ilişki"><em>IX) Uluslararası Göç İstatistiği ile Gayrisafi Yurt İçi Hasıla Arasındaki İlişki:</em></a></li>
+  <li><a href="#ix-göç-oranına-göre-illeri-kümeleme" id="toc-ix-göç-oranına-göre-illeri-kümeleme" class="nav-link" data-scroll-target="#ix-göç-oranına-göre-illeri-kümeleme"><em>IX) Göç Oranına Göre İlleri Kümeleme:</em></a></li>
   </ul></li>
   </ul></li>
   <li><a href="#sonuç-ve-çıkarımlar" id="toc-sonuç-ve-çıkarımlar" class="nav-link" data-scroll-target="#sonuç-ve-çıkarımlar"><span style="color:darkblue">4. Sonuç ve Çıkarımlar</span> <img src="images/clipboard-1698656164.png" class="img-fluid" width="35"></a></li>
@@ -751,6 +752,41 @@ F-statistic: 0.2965 on 1 and 79 DF,  p-value: 0.5876</code></pre>
 </div>
 </div>
 </section>
+<section id="ix-göç-oranına-göre-illeri-kümeleme" class="level3" style="color:darkblue">
+<h3 style="color:darkblue" class="anchored" data-anchor-id="ix-göç-oranına-göre-illeri-kümeleme"><em>IX) Göç Oranına Göre İlleri Kümeleme:</em></h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Kodu Görmek İçin Tıklayınız.</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_xls</span>(<span class="st">"C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">goc_orani =</span> (net <span class="sc">/</span>nufus) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>data_scaled <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(goc_orani, goc_orani) <span class="sc">%&gt;%</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale</span>()</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>kmeans_result <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(data_scaled, <span class="at">centers =</span> <span class="dv">3</span>)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>Cluster <span class="ot">&lt;-</span> kmeans_result<span class="sc">$</span>cluster</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> goc_orani, <span class="at">y=</span>goc_orani,  <span class="at">color =</span> <span class="fu">as.factor</span>(Cluster))) <span class="sc">+</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"K-means Kümeleme Analizi Sonuçları"</span>,</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Göç Oranı"</span>,</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span> <span class="st">"Göç Oranı"</span>,</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Küme"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="project_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="sonuç-ve-çıkarımlar" class="level1" width="23" height="23">
@@ -760,6 +796,9 @@ F-statistic: 0.2965 on 1 and 79 DF,  p-value: 0.5876</code></pre>
 <p><img src="images/sonuc.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" width="259"></p>
 </figure>
 </div>
+<p>Bu çalışma ile Türkiye’nin uluslararası göç istatistiklerinin cinsiyet, yaş aralığı, vatandaşlık ülkesine göre mevcut durumu ortaya konmuştur.</p>
+<p>Ülkemizden giden nüfusun eğitim düzeyi ile ilişkisi araştırılmıştır. Yüksekokul ve üzeri eğitim düzeyine sahip kişilerin giden göç sayısıyla ilişkili olduğu tespit edilmiştir.</p>
+<p>Son olarak, net göç sayısı ve Gayrisafi Yurt İçi Hasıla arasındaki ilişki araştırılmıştır. GSYH ile net göç arasında bir lişki olmadığı tespit edilmiştir.</p>
 
 
 </section>

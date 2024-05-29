@@ -317,8 +317,38 @@ ggplot(data, aes(x = giden, y = GSYH)) +
 
 ```
 
+### *IX) Göç Oranına Göre İlleri Kümeleme:* {style="color:darkblue"}
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(readxl)
+data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
+data <- data %>%
+  mutate(goc_orani = (net /nufus) * 100)
+data_scaled <- data %>%
+  select(goc_orani, goc_orani) %>%
+  scale()
+set.seed(123) 
+kmeans_result <- kmeans(data_scaled, centers = 3)
+
+data$Cluster <- kmeans_result$cluster
+
+ggplot(data, aes(x = goc_orani, y=goc_orani,  color = as.factor(Cluster))) +
+  geom_point(size = 3) +
+  labs(title = "K-means Kümeleme Analizi Sonuçları",
+       x = "Göç Oranı",
+       y= "Göç Oranı",
+       color = "Küme")
+
+```
+
 # [4. Sonuç ve Çıkarımlar]{style="color:darkblue"} ![](images/clipboard-1698656164.png){width="35"} {width="23" height="23"}
 
 ![](images/sonuc.gif){fig-align="center" width="259"}
 
+Bu çalışma ile Türkiye'nin uluslararası göç istatistiklerinin cinsiyet, yaş aralığı, vatandaşlık ülkesine göre mevcut durumu ortaya konmuştur.
 
+Ülkemizden giden nüfusun eğitim düzeyi ile ilişkisi araştırılmıştır. Yüksekokul ve üzeri eğitim düzeyine sahip kişilerin giden göç sayısıyla ilişkili olduğu tespit edilmiştir.
+
+Son olarak, net göç sayısı ve Gayrisafi Yurt İçi Hasıla arasındaki ilişki araştırılmıştır. GSYH ile net göç arasında bir lişki olmadığı tespit edilmiştir.
