@@ -189,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#vii-yıllara-göre-yakalanan-düzensiz-göçmenlerin-dağılımı" id="toc-vii-yıllara-göre-yakalanan-düzensiz-göçmenlerin-dağılımı" class="nav-link" data-scroll-target="#vii-yıllara-göre-yakalanan-düzensiz-göçmenlerin-dağılımı"><em>VII) Yıllara Göre Yakalanan Düzensiz Göçmenlerin Dağılımı:</em></a></li>
   <li><a href="#viii-iller-bazında-eğitim-düzeyi-ve-göç-arasındaki-ilişki" id="toc-viii-iller-bazında-eğitim-düzeyi-ve-göç-arasındaki-ilişki" class="nav-link" data-scroll-target="#viii-iller-bazında-eğitim-düzeyi-ve-göç-arasındaki-ilişki"><em>VIII) İller Bazında Eğitim Düzeyi ve Göç ArasındaKİ İlişki:</em></a></li>
   <li><a href="#ix-uluslararası-göç-istatistiği-ile-gayrisafi-yurt-içi-hasıla-arasındaki-ilişki" id="toc-ix-uluslararası-göç-istatistiği-ile-gayrisafi-yurt-içi-hasıla-arasındaki-ilişki" class="nav-link" data-scroll-target="#ix-uluslararası-göç-istatistiği-ile-gayrisafi-yurt-içi-hasıla-arasındaki-ilişki"><em>IX) Uluslararası Göç İstatistiği ile Gayrisafi Yurt İçi Hasıla Arasındaki İlişki:</em></a></li>
-  <li><a href="#ix-göç-oranına-göre-illeri-kümeleme" id="toc-ix-göç-oranına-göre-illeri-kümeleme" class="nav-link" data-scroll-target="#ix-göç-oranına-göre-illeri-kümeleme"><em>IX) Göç Oranına Göre İlleri Kümeleme:</em></a></li>
+  <li><a href="#x-göç-oranına-göre-illeri-kümeleme" id="toc-x-göç-oranına-göre-illeri-kümeleme" class="nav-link" data-scroll-target="#x-göç-oranına-göre-illeri-kümeleme"><em>X) Göç Oranına Göre İlleri Kümeleme:</em></a></li>
   </ul></li>
   </ul></li>
   <li><a href="#sonuç-ve-çıkarımlar" id="toc-sonuç-ve-çıkarımlar" class="nav-link" data-scroll-target="#sonuç-ve-çıkarımlar"><span style="color:darkblue">4. Sonuç ve Çıkarımlar</span> <img src="images/clipboard-1698656164.png" class="img-fluid" width="35"></a></li>
@@ -233,6 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Türkiye’nin maruz kaldığı uluslararası göç hareketliliğinin büyüklük ve nitelik açısından analiz edilmesi</p></li>
 <li><p>Yüksekokul ve üzeri eğitime sahip kişi sayısı ile göç sayısı arasındaki ilişkinin tespiti</p></li>
 <li><p>İl bazında Gayrisafi Yurt İçi Hasıla ile göç sayısı arasındaki ilişkinin tespiti</p></li>
+<li><p>Net göç oranına göre illerin kümelenmesi</p></li>
 </ul>
 </section>
 <section id="veri" class="level1">
@@ -280,6 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1 width="23" height="23"><span style="color:darkblue">3. Analiz</span> <img src="images/clipboard-355426313.png" class="img-fluid" width="23"></h1>
 <p>Türkiye’deki mevcut durum tespit edilmiştir.</p>
 <p>Zaman serisi analizi ile kaçak göçmen sayısının tahmini yapılmıştır.</p>
+<p>Kümeleme ile göç oranına göre iller gruplandırılmıştır.</p>
 <p>Regresyon analizi ile göç hareketliliği ile GSYH ve eğitim düzeyi arasındaki ilişki belirlenmiştir.</p>
 <section id="veri-analizi" class="level2" style="color:brown">
 <h2 style="color:brown" class="anchored" data-anchor-id="veri-analizi"><em>3.1. Veri Analizi</em></h2>
@@ -672,7 +674,7 @@ F-statistic: 826.9 on 1 and 79 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(illeregoreegitim, <span class="fu">aes</span>(<span class="at">x =</span> giden, <span class="at">y =</span> yuksekokul)) <span class="sc">+</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"navy"</span>) <span class="sc">+</span>                  </span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">col =</span> <span class="st">"darkred"</span>) <span class="sc">+</span>      </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Göç ile Yüksekokul Üstü Eğitim Düzeyi Arasındaki İlişki"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Giden Göç Sayısı ile Yüksekokul Üstü Eğitim Düzeyi Arasındaki İlişki"</span>,</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Göç Sayısı"</span>,</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Yüksekokul Üstü Eğitim Düzeyi Kişi Sayısı"</span>) <span class="sc">+</span></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                       </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -752,8 +754,8 @@ F-statistic: 0.2965 on 1 and 79 DF,  p-value: 0.5876</code></pre>
 </div>
 </div>
 </section>
-<section id="ix-göç-oranına-göre-illeri-kümeleme" class="level3" style="color:darkblue">
-<h3 style="color:darkblue" class="anchored" data-anchor-id="ix-göç-oranına-göre-illeri-kümeleme"><em>IX) Göç Oranına Göre İlleri Kümeleme:</em></h3>
+<section id="x-göç-oranına-göre-illeri-kümeleme" class="level3" style="color:darkblue">
+<h3 style="color:darkblue" class="anchored" data-anchor-id="x-göç-oranına-göre-illeri-kümeleme"><em>X) Göç Oranına Göre İlleri Kümeleme:</em></h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Kodu Görmek İçin Tıklayınız.</summary>
@@ -773,10 +775,7 @@ F-statistic: 0.2965 on 1 and 79 DF,  p-value: 0.5876</code></pre>
 <span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> goc_orani, <span class="at">y=</span>goc_orani,  <span class="at">color =</span> <span class="fu">as.factor</span>(Cluster))) <span class="sc">+</span></span>
 <span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"K-means Kümeleme Analizi Sonuçları"</span>,</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Göç Oranı"</span>,</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span> <span class="st">"Göç Oranı"</span>,</span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Küme"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> iller), <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -784,6 +783,29 @@ F-statistic: 0.2965 on 1 and 79 DF,  p-value: 0.5876</code></pre>
 <p><img src="project_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
+</div>
+<details class="code-fold">
+<summary>Kodu Görmek İçin Tıklayınız.</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"K-means Kümeleme Analizi Sonuçları"</span>,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Göç Oranı"</span>,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span> <span class="st">"Göç Oranı"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Küme"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$x
+[1] "Göç Oranı"
+
+$y
+[1] "Göç Oranı"
+
+$colour
+[1] "Küme"
+
+$title
+[1] "K-means Kümeleme Analizi Sonuçları"
+
+attr(,"class")
+[1] "labels"</code></pre>
 </div>
 </div>
 </section>
@@ -798,7 +820,8 @@ F-statistic: 0.2965 on 1 and 79 DF,  p-value: 0.5876</code></pre>
 </div>
 <p>Bu çalışma ile Türkiye’nin uluslararası göç istatistiklerinin cinsiyet, yaş aralığı, vatandaşlık ülkesine göre mevcut durumu ortaya konmuştur.</p>
 <p>Ülkemizden giden nüfusun eğitim düzeyi ile ilişkisi araştırılmıştır. Yüksekokul ve üzeri eğitim düzeyine sahip kişilerin giden göç sayısıyla ilişkili olduğu tespit edilmiştir.</p>
-<p>Son olarak, net göç sayısı ve Gayrisafi Yurt İçi Hasıla arasındaki ilişki araştırılmıştır. GSYH ile net göç arasında bir lişki olmadığı tespit edilmiştir.</p>
+<p>Net göç sayısı ve Gayrisafi Yurt İçi Hasıla arasındaki ilişki araştırılmıştır. GSYH ile net göç arasında bir lişki olmadığı tespit edilmiştir.</p>
+<p>Son olarak, göç oranına göre iller kümelenmiştir.</p>
 
 
 </section>

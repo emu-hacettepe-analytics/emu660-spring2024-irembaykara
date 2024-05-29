@@ -17,6 +17,8 @@ format:
 
 -   İl bazında Gayrisafi Yurt İçi Hasıla ile göç sayısı arasındaki ilişkinin tespiti
 
+-   Net göç oranına göre illerin kümelenmesi
+
 # [2. Veri]{style="color:darkblue"} ![](images/clipboard-442643652.png){width="23" height="23"}
 
 ## [*2.1. Veri Kaynağı*]{style="color:brown"}
@@ -64,6 +66,8 @@ Analiz için 2022 yılına ait;
 Türkiye'deki mevcut durum tespit edilmiştir.
 
 Zaman serisi analizi ile kaçak göçmen sayısının tahmini yapılmıştır.
+
+Kümeleme ile göç oranına göre iller gruplandırılmıştır.
 
 Regresyon analizi ile göç hareketliliği ile GSYH ve eğitim düzeyi arasındaki ilişki belirlenmiştir.
 
@@ -281,7 +285,7 @@ summary(model)
 ggplot(illeregoreegitim, aes(x = giden, y = yuksekokul)) +
   geom_point(color = "navy") +                  
   geom_smooth(method = "lm", col = "darkred") +      
-  labs(title = "Göç ile Yüksekokul Üstü Eğitim Düzeyi Arasındaki İlişki",
+  labs(title = "Giden Göç Sayısı ile Yüksekokul Üstü Eğitim Düzeyi Arasındaki İlişki",
        x = "Göç Sayısı",
        y = "Yüksekokul Üstü Eğitim Düzeyi Kişi Sayısı") +
   theme_minimal()                       
@@ -317,7 +321,7 @@ ggplot(data, aes(x = giden, y = GSYH)) +
 
 ```
 
-### *IX) Göç Oranına Göre İlleri Kümeleme:* {style="color:darkblue"}
+### *X) Göç Oranına Göre İlleri Kümeleme:* {style="color:darkblue"}
 
 ```{r}
 library(dplyr)
@@ -336,10 +340,13 @@ data$Cluster <- kmeans_result$cluster
 
 ggplot(data, aes(x = goc_orani, y=goc_orani,  color = as.factor(Cluster))) +
   geom_point(size = 3) +
+   geom_text(aes(label = iller), vjust = -1, hjust = 0.5, check_overlap = TRUE, size = 3)
   labs(title = "K-means Kümeleme Analizi Sonuçları",
        x = "Göç Oranı",
        y= "Göç Oranı",
        color = "Küme")
+
+
 
 ```
 
@@ -351,4 +358,6 @@ Bu çalışma ile Türkiye'nin uluslararası göç istatistiklerinin cinsiyet, y
 
 Ülkemizden giden nüfusun eğitim düzeyi ile ilişkisi araştırılmıştır. Yüksekokul ve üzeri eğitim düzeyine sahip kişilerin giden göç sayısıyla ilişkili olduğu tespit edilmiştir.
 
-Son olarak, net göç sayısı ve Gayrisafi Yurt İçi Hasıla arasındaki ilişki araştırılmıştır. GSYH ile net göç arasında bir lişki olmadığı tespit edilmiştir.
+Net göç sayısı ve Gayrisafi Yurt İçi Hasıla arasındaki ilişki araştırılmıştır. GSYH ile net göç arasında bir lişki olmadığı tespit edilmiştir.
+
+Son olarak, göç oranına göre iller kümelenmiştir.
