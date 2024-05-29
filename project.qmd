@@ -46,19 +46,19 @@ Analiz için 2022 yılına ait;
 -   İller Bazında Gayrisafi Yurt İçi Hasıla(\$) verilerinden yararlanılacaktır.
 
 ```{r}
-#library(readxl)
-#yas <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yas.xls")
-#il <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
-#vatandaslik <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/vatandaslik.xls")
-#yabanci_nufus <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yabanci_nufus.xls")
-#kacak <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/kacak.xlsx")
-#illeregoreegitim <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/illeregoreegitim.xlsx")
-#head(yas)
-#head(il)
-#head(vatandaslik)
-#head(yabanci_nufus)
-#head(kacak)
-#head(illeregoreegitim)
+library(readxl)
+yas <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yas.xls")
+il <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
+vatandaslik <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/vatandaslik.xls")
+yabanci_nufus <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yabanci_nufus.xls")
+kacak <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/kacak.xlsx")
+illeregoreegitim <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/illeregoreegitim.xlsx")
+head(yas)
+head(il)
+head(vatandaslik)
+head(yabanci_nufus)
+head(kacak)
+head(illeregoreegitim)
 ```
 
 # [3. Analiz]{style="color:darkblue"} ![](images/clipboard-355426313.png){width="23"} {width="23" height="23"}
