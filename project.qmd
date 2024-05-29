@@ -75,6 +75,8 @@ Regresyon analizi ile göç hareketliliği ile GSYH ve eğitim düzeyi arasında
 
 ### *I) Cinsiyet ve Yaş Aralığı Bazında Göç Hareketliliği:* {style="color:darkblue"}
 
+Cinsiyete göre hangi yaş aralığında daha yoğun göç hareketliliğinin olduğu tespit edilmiştir.
+
 ```{r}
 library(ggplot2)
 library(readxl)
@@ -105,6 +107,8 @@ print(cubuk_grafik)
 ```
 
 ### *II) Yurt Dışına En Çok Göç Veren Şehirler:* {style="color:darkblue"}
+
+Yurtdışına en çok göç veren ve yurtdışından en çok göç alan şehirler belirlenmiştir. Bu şehirlerin nüfusuna oranla net göç oranı ortaya konmuştur.
 
 ```{r}
 library(ggplot2)
@@ -170,6 +174,8 @@ ggplot(goc_orani, aes(x = reorder(iller, goc_orani), y = goc_orani)) +
 
 ### *V) Ülkeler Bazında Göç Dağılımı:* {style="color:darkblue"}
 
+Yurtdışından en çok göç alınan ülkeler ve yurtdışına en çok edilen ülkeler belirlenmiştir.
+
 ```{r}
 library(ggplot2)
 library(readxl)
@@ -200,6 +206,8 @@ ggplot(top_10_giden, aes(x = reorder(vatandaslik_ulkesi, -giden), y = giden)) +
 
 ### *VI) Türkiye'deki Yabancı Uyruk Nüfusu:* {style="color:darkblue"}
 
+Ülkemizde yer alan yabancı uyruklu nüfus sayısı tespit edilmiştir.
+
 ```{r}
 library(ggplot2)
 library(tibble)
@@ -218,6 +226,7 @@ ggplot(top_10, aes(x = reorder(vatandaslik_ulkesi, -yabanci_uyruklu_nufus), y = 
 ```
 
 ### *VII) Yıllara Göre Yakalanan Düzensiz Göçmenlerin Dağılımı:* {style="color:darkblue"}
+
 
 ```{r}
 library(tidyverse)
@@ -266,6 +275,8 @@ ggplot(combined_data, aes(x = year, y = value, color = ulke)) +
 
 ### *VIII) İller Bazında Eğitim Düzeyi ve Göç ArasındaKİ İlişki:* {style="color:darkblue"}
 
+Yüksekokul ve üzeri eğitim düzeyi ile yurtdışına yapılan göç arasındaki ilişki ortaya konmuştur.
+
 ```{r}
 library(dplyr)
 library(readxl)
@@ -293,6 +304,8 @@ ggplot(illeregoreegitim, aes(x = giden, y = yuksekokul)) +
 ```
 
 ### *IX) Uluslararası Göç İstatistiği ile Gayrisafi Yurt İçi Hasıla Arasındaki İlişki:* {style="color:darkblue"}
+
+iller bazında gayrisafi yurt içi hasıla tutarı ile net göç arasındaki ilişki ortaya konmuştur.
 
 ```{r}
 library(dplyr)
