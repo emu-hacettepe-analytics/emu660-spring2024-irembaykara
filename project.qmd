@@ -1,10 +1,20 @@
 ---
 title: "Uluslararası Göç İstatistikleri Analizi"
-
+execute:
+  echo: false
 format:
   html:
     code-fold: true
+    embed-resources: true
     code-summary: "Kodu Görmek İçin Tıklayınız."
+    pdf:
+    colorlinks: true
+    papersize: a4
+    fontsize: 11pt
+    margin-left: 2cm
+    margin-right: 2cm
+    margin-top: 2cm
+    margin-bottom: 2cm
 ---
 
 ![](images/74pZ.gif){fig-align="center" width="474"}
@@ -41,24 +51,22 @@ Analiz için 2022 yılına ait;
 
 -   Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus,
 
--   Yıllara göre yakalanan göçmen sayısı,
-
 -   İller Bazında Gayrisafi Yurt İçi Hasıla(\$) verilerinden yararlanılacaktır.
 
 ```{r}
 library(readxl)
-yas <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yas.xls")
-il <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
-vatandaslik <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/vatandaslik.xls")
-yabanci_nufus <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yabanci_nufus.xls")
-kacak <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/kacak.xlsx")
-illeregoreegitim <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/illeregoreegitim.xlsx")
-head(yas)
-head(il)
-head(vatandaslik)
-head(yabanci_nufus)
-head(kacak)
-head(illeregoreegitim)
+#yas <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yas.xls")
+#il <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
+#vatandaslik <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/vatandaslik.xls")
+#yabanci_nufus <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yabanci_nufus.xls")
+#kacak <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/kacak.xlsx")
+#illeregoreegitim <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/illeregoreegitim.xlsx")
+#head(yas)
+#head(il)
+#head(vatandaslik)
+#head(yabanci_nufus)
+#head(kacak)
+#head(illeregoreegitim)
 ```
 
 # [3. Analiz]{style="color:darkblue"} ![](images/clipboard-355426313.png){width="23"} {width="23" height="23"}
@@ -225,55 +233,7 @@ ggplot(top_10, aes(x = reorder(vatandaslik_ulkesi, -yabanci_uyruklu_nufus), y = 
 
 ```
 
-### *VII) Yıllara Göre Yakalanan Düzensiz Göçmenlerin Dağılımı:* {style="color:darkblue"}
-
-
-```{r}
-library(tidyverse)
-library(tsibble)
-library(fable)
-library(ggplot2)
-library(readxl)
-library(forecast) 
-kacak <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/kacak.xlsx")
-
-data_long <- kacak %>%
-  pivot_longer(-ulke, names_to = "year", values_to = "value") %>%
-  mutate(year = as.integer(year))
-
-forecast_data <- data.frame()
-
-
-for (country in unique(data_long$ulke)) {
-
-  country_data <- data_long %>% filter(ulke == country)
-  
-
-  ts_data <- ts(country_data$value, start = min(country_data$year), frequency = 1)
-  
-  fit <- auto.arima(ts_data)
-  
-  forecast_values <- forecast(fit, h = 5)
-  forecast_df <- data.frame(
-    ulke = country,
-    year = (max(country_data$year) + 1):(max(country_data$year) + 5),
-    value = as.numeric(forecast_values$mean)
-  )
-  
-  forecast_data <- bind_rows(forecast_data, forecast_df)
-}
-
-combined_data <- bind_rows(data_long, forecast_data)
-ggplot(combined_data, aes(x = year, y = value, color = ulke)) +
-  geom_line(size = 1, linetype = "solid") +
-  labs(title = "Yakalanan Kaçak Göçmen Nüfusu ve Gelecek 5 Yıl Tahmini",
-       x = "Yıl",
-       y = "Nüfus") +
-  theme_minimal()
-
-```
-
-### *VIII) İller Bazında Eğitim Düzeyi ve Göç ArasındaKİ İlişki:* {style="color:darkblue"}
+### *VII) İller Bazında Eğitim Düzeyi ve Göç ArasındaKİ İlişki:* {style="color:darkblue"}
 
 Yüksekokul ve üzeri eğitim düzeyi ile yurtdışına yapılan göç arasındaki ilişki ortaya konmuştur.
 
@@ -303,7 +263,7 @@ ggplot(illeregoreegitim, aes(x = giden, y = yuksekokul)) +
 
 ```
 
-### *IX) Uluslararası Göç İstatistiği ile Gayrisafi Yurt İçi Hasıla Arasındaki İlişki:* {style="color:darkblue"}
+### *VIII) Uluslararası Göç İstatistiği ile Gayrisafi Yurt İçi Hasıla Arasındaki İlişki:* {style="color:darkblue"}
 
 iller bazında gayrisafi yurt içi hasıla tutarı ile net göç arasındaki ilişki ortaya konmuştur.
 
@@ -334,7 +294,7 @@ ggplot(data, aes(x = giden, y = GSYH)) +
 
 ```
 
-### *X) Göç Oranına Göre İlleri Kümeleme:* {style="color:darkblue"}
+### *IX) Göç Oranına Göre İlleri Kümeleme:* {style="color:darkblue"}
 
 ```{r}
 library(dplyr)
