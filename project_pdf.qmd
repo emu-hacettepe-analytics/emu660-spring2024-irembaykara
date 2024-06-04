@@ -2,30 +2,33 @@
 title: "Uluslararası Göç İstatistikleri Analizi"
 
 format:
-  html:
-    code-fold: true
-    code-summary: "Kodu Görmek İçin Tıklayınız."
+  pdf:
+    colorlinks: true
+    papersize: a4
+    fontsize: 11pt
+    margin-left: 2cm
+    margin-right: 2cm
+    margin-top: 2cm
+    margin-bottom: 2cm
+knitr:
+  opts_chunk:
+    echo: false
     warning: false
     message: false
 ---
-
-![](images/74pZ.gif){fig-align="center" width="474"}
-
-# [1. Amaç ve Kapsam]{style="color:darkblue"} ![](images/clipboard-3134960358.png){width="23" height="23"}
+# [1. Amaç ve Kapsam]{style="color:darkblue"} 
 
 -   Türkiye’nin maruz kaldığı uluslararası göç hareketliliğinin büyüklük ve nitelik açısından analiz edilmesi
 
 -   Yüksekokul ve üzeri eğitime sahip kişi sayısı ile göç sayısı arasındaki ilişkinin tespiti
 
--   İl bazında Gayrisafi Yurt İçi Hasıla ile göç sayısı arasındaki ilişkinin tespiti
+-   Net göç oranına göre illerin kümelenmesi hedeflenmektedir.
 
-# [2. Veri]{style="color:darkblue"} ![](images/clipboard-442643652.png){width="23" height="23"}
+# [2. Veri]{style="color:darkblue"} 
 
 ## [*2.1. Veri Kaynağı*]{style="color:brown"}
 
 -   \[Türkiye İstatistik Kurumu Uluslararası Göç İstistikleri\](https://data.tuik.gov.tr/Bulten/Index?p=Uluslararasi-Goc-Istatistikleri-2022-49457)
-
--   \[İl Bazında Gayrisafi Yurt İçi Hasıla\](https://data.tuik.gov.tr/Bulten/Index?p=Il-Bazinda-Gayrisafi-Yurt-Ici-Hasila-2022-45867)
 
 -   \[Göç İdaresi Başkanlığı Düzensiz Göç İstatistikleri\](https://www.goc.gov.tr/duzensiz-goc-istatistikler)
 
@@ -39,14 +42,10 @@ Analiz için 2022 yılına ait;
 
 -   Vatandaşlık ülkesine göre Türkiye'ye gelen ve Türkiye'den giden göç nüfus sayısı,
 
--   Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfus,
-
--   Yıllara göre yakalanan göçmen sayısı,
-
--   İller Bazında Gayrisafi Yurt İçi Hasıla(\$) verilerinden yararlanılacaktır.
+-   Türkiye’de vatandaşlık ülkesine göre yabancı uyruklu nüfusu verilerinden yararlanılacaktır.
 
 ```{r}
-#library(readxl)
+library(readxl)
 #yas <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/yas.xls")
 #il <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
 #vatandaslik <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/vatandaslik.xls")
@@ -61,17 +60,10 @@ Analiz için 2022 yılına ait;
 #head(illeregoreegitim)
 ```
 
-# [3. Analiz]{style="color:darkblue"} ![](images/clipboard-355426313.png){width="23"} {width="23" height="23"}
+# [3. Analiz]{style="color:darkblue"} 
+## *3.1. Cinsiyet ve Yaş Aralığı Bazında Göç Hareketliliği:* {style="color:darkblue"}
 
-Türkiye'deki mevcut durum tespit edilmiştir.
-
-Zaman serisi analizi ile kaçak göçmen sayısının tahmini yapılmıştır.
-
-Regresyon analizi ile göç hareketliliği ile GSYH ve eğitim düzeyi arasındaki ilişki belirlenmiştir.
-
-## *3.1. Veri Analizi* {style="color:brown"}
-
-### *I) Cinsiyet ve Yaş Aralığı Bazında Göç Hareketliliği:* {style="color:darkblue"}
+Cinsiyete göre hangi yaş aralığında daha yoğun göç hareketliliğinin olduğu tespit edilmiştir.
 
 ```{r}
 library(ggplot2)
@@ -101,43 +93,9 @@ cubuk_grafik <- ggplot(data, aes(x = yas)) +
 
 print(cubuk_grafik)
 ```
+Erkeklerde yoğun olarak 25-29 yaş aralığında giden nüfusun, kadınlarda ise 15-19 yaş aralığında gelen nüfusun yoğunlukta olduğu gözlemlenmektedir.
 
-### *II) Yurt Dışına En Çok Göç Veren Şehirler:* {style="color:darkblue"}
-
-```{r}
-library(ggplot2)
-library(readxl)
-
-data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
-
-# Göç veren şehirleri belirleme
-top_10_veren <- data[order(-data$giden),][1:10,]
-ggplot(top_10_veren, aes(x = reorder(iller, -giden), y = giden)) +
-  geom_bar(stat = "identity", fill = "skyblue") +
-   coord_flip() + 
-  labs(title = "En Çok Göç Veren İlk 10 Şehir", x = "Şehirler", y = "Gelen Kişi Sayısı") +
-  theme_light()
-
-```
-
-### *III)Yurt Dışından En Çok Göç Alan Şehirler:* {style="color:darkblue"}
-
-```{r}
-library(ggplot2)
-library(readxl)
-
-data <- read_xls("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/il.xls")
-
-# Göç alan şehirleri belirleme
-top_10_gelen <- data[order(-data$gelen),][1:10,]
-ggplot(top_10_gelen, aes(x = reorder(iller, gelen), y = gelen)) + 
-  geom_bar(stat = "identity", fill = "skyblue") + 
-  coord_flip() + 
-  labs(title = "En Çok Göç Alan: İlk 10 Şehir", x = "Şehirler", y = "Gelen Kişi Sayısı") +
-  theme_light()
-```
-
-### *IV) İller Bazında Nüfusa Oranla Net Göç Oranı:* {style="color:darkblue"}
+## *3.2. İller Bazında Nüfusa Oranla Net Göç Oranı:* {style="color:darkblue"}
 
 ```{r}
 library(dplyr)
@@ -166,7 +124,11 @@ ggplot(goc_orani, aes(x = reorder(iller, goc_orani), y = goc_orani)) +
 
 ```
 
-### *V) Ülkeler Bazında Göç Dağılımı:* {style="color:darkblue"}
+İller bazında nüfusa oranla en çok göç alan şehir Antalya iken en çok göç veren şehir Gümüşhane olduğu gözlemlenmştir.
+
+## *3.3. Ülkeler Bazında Göç Dağılımı:* {style="color:darkblue"}
+
+Yurtdışından en çok göç alınan ülkeler ve yurtdışına en çok edilen ülkeler belirlenmiştir.
 
 ```{r}
 library(ggplot2)
@@ -196,7 +158,9 @@ ggplot(top_10_giden, aes(x = reorder(vatandaslik_ulkesi, -giden), y = giden)) +
 
 ```
 
-### *VI) Türkiye'deki Yabancı Uyruk Nüfusu:* {style="color:darkblue"}
+## *3.4. Türkiye'deki Yabancı Uyruk Nüfusu:* {style="color:darkblue"}
+
+Ülkemizde yer alan yabancı uyruklu nüfus sayısı tespit edilmiştir.
 
 ```{r}
 library(ggplot2)
@@ -215,56 +179,11 @@ ggplot(top_10, aes(x = reorder(vatandaslik_ulkesi, -yabanci_uyruklu_nufus), y = 
 
 ```
 
-### *VII) Yıllara Göre Yakalanan Düzensiz Göçmenlerin Dağılımı:* {style="color:darkblue"}
+## *3.5. İller Bazında Eğitim Düzeyi ve Göç ArasındaKİ İlişki:* {style="color:darkblue"}
 
-```{r}
-library(tidyverse)
-library(tsibble)
-library(fable)
-library(ggplot2)
-library(readxl)
-library(forecast) 
-kacak <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/kacak.xlsx")
+Yüksekokul ve üzeri eğitim düzeyi ile yurtdışına yapılan göç arasındaki ilişki ortaya konmuştur.
 
-data_long <- kacak %>%
-  pivot_longer(-ulke, names_to = "year", values_to = "value") %>%
-  mutate(year = as.integer(year))
-
-forecast_data <- data.frame()
-
-
-for (country in unique(data_long$ulke)) {
-
-  country_data <- data_long %>% filter(ulke == country)
-  
-
-  ts_data <- ts(country_data$value, start = min(country_data$year), frequency = 1)
-  
-  fit <- auto.arima(ts_data)
-  
-  forecast_values <- forecast(fit, h = 5)
-  forecast_df <- data.frame(
-    ulke = country,
-    year = (max(country_data$year) + 1):(max(country_data$year) + 5),
-    value = as.numeric(forecast_values$mean)
-  )
-  
-  forecast_data <- bind_rows(forecast_data, forecast_df)
-}
-
-combined_data <- bind_rows(data_long, forecast_data)
-ggplot(combined_data, aes(x = year, y = value, color = ulke)) +
-  geom_line(size = 1, linetype = "solid") +
-  labs(title = "Yakalanan Kaçak Göçmen Nüfusu ve Gelecek 5 Yıl Tahmini",
-       x = "Yıl",
-       y = "Nüfus") +
-  theme_minimal()
-
-```
-
-### *VIII) İller Bazında Eğitim Düzeyi ve Göç ArasındaKİ İlişki:* {style="color:darkblue"}
-
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(dplyr)
 library(readxl)
 library(ggplot2)
@@ -289,37 +208,7 @@ ggplot(illeregoreegitim, aes(x = giden, y = yuksekokul)) +
   theme_minimal()                       
 
 ```
-
-### *IX) Uluslararası Göç İstatistiği ile Gayrisafi Yurt İçi Hasıla Arasındaki İlişki:* {style="color:darkblue"}
-
-```{r}
-library(dplyr)
-library(readxl)
-library(ggplot2)
-data <- read_xlsx("C:/Users/irem.baykara/Documents/GitHub/emu660-spring2024-irembaykara/GSYH.xlsx")
-
-#cor_func <- function(x, y) {
- # cor_coef <- cor(x, y)
-  #cor_label <- paste("Correlation:", round(cor_coef, 3))
-  #return(cor_label)
-#}
-#cor_label <- cor_func(data$GSYH, data$giden)
-#print(cor_label)
-
-model <- lm(GSYH ~ net, data = data)
-summary(model)
-ggplot(data, aes(x = giden, y = GSYH)) +
-  geom_point(color = "navy") +                  
-  geom_smooth(method = "lm", col = "darkred") +      
-  labs(title = "Net Göç Sayısı ile Gayrisafi Milli Hasıla Arasındaki İlişki",
-       x = "Göç Sayısı",
-       y = "Gayrisafi Yurt İçi Hasıla") +
-  theme_minimal()       
-    
-
-```
-
-### *X) Göç Oranına Göre İlleri Kümeleme:* {style="color:darkblue"}
+## *3.6. Göç Oranına Göre İlleri Kümeleme:* {style="color:darkblue"}
 
 ```{r}
 library(dplyr)
@@ -349,15 +238,10 @@ ggplot(data, aes(x = goc_orani, y = goc_orani, color = as.factor(Cluster))) +
   )
 
 ```
-
-# [4. Sonuç ve Çıkarımlar]{style="color:darkblue"} ![](images/clipboard-1698656164.png){width="35"} {width="23" height="23"}
-
-![](images/sonuc.gif){fig-align="center" width="259"}
+# [4. Sonuç ve Çıkarımlar]{style="color:darkblue"} 
 
 Bu çalışma ile Türkiye'nin uluslararası göç istatistiklerinin cinsiyet, yaş aralığı, vatandaşlık ülkesine göre mevcut durumu ortaya konmuştur.
 
 Ülkemizden giden nüfusun eğitim düzeyi ile ilişkisi araştırılmıştır. Yüksekokul ve üzeri eğitim düzeyine sahip kişilerin giden göç sayısıyla ilişkili olduğu tespit edilmiştir.
-
-Net göç sayısı ve Gayrisafi Yurt İçi Hasıla arasındaki ilişki araştırılmıştır. GSYH ile net göç arasında bir lişki olmadığı tespit edilmiştir.
 
 Son olarak, göç oranına göre iller kümelenmiştir.
